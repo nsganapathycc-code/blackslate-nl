@@ -235,15 +235,31 @@ footer .f-grid nav[aria-labelledby="f-ex"] a{display:block;margin-bottom:12px;br
 @media (max-width:720px){.scope-wrap{padding:0 20px}}
 
 /* scope-new-fix */ .scope-new{align-self:flex-start;width:auto!important}
+
+/* ===== Landing-page layout (no site header/footer) ===== */
+body > header{background:var(--brand)!important;border-bottom:0!important;box-shadow:none!important;position:static!important}
+body > header .logo{pointer-events:none;color:#fff!important}
+.wl{background:var(--brand)!important;color:#fff}
+.wl .wrap{min-height:calc(88vh - 72px);padding-top:40px!important;padding-bottom:72px!important;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)!important;gap:56px!important;align-items:center}
+.wl-copy h1,.wl-copy .lead,.wl-copy .pre,.wl-copy .proofline{color:#fff!important}
+.wl-copy .lead{opacity:.92}.wl-copy .proofline{opacity:.8}
+.wl-copy .when{color:var(--cta)!important;letter-spacing:.04em;text-transform:uppercase;font-size:14px!important}
+.wl .formcol{background:#fff;color:var(--ink);border-radius:12px;padding:26px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+.wl .formcol .offer{color:var(--ink)}
+.wl form:not(.f-form){box-shadow:none!important;border:0!important;padding:0!important;background:transparent!important;margin-top:14px}
+.lp-foot{background:var(--brand);color:#DCE5DF;font-size:14px}
+.lp-foot .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;padding-top:22px;padding-bottom:22px}
+.lp-foot a{color:#fff}
+@media (max-width:900px){.wl .wrap{grid-template-columns:1fr!important;min-height:0}}
 </style>
 </head>
 <body>
 
 <header>
+  <!-- Landing page: logo only, no menu and no links out (Wix page layout without the site header). -->
   <div class="wrap">
-    <a class="logo" href="01-home.html">Business Name</a>
-    <a class="back" href="01-home.html">Back to site</a>
-  </div>
+    <span class="logo">Business Name</span>
+      </div>
 </header>
 
 <main>
@@ -366,30 +382,9 @@ footer .f-grid nav[aria-labelledby="f-ex"] a{display:block;margin-bottom:12px;br
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <a class="f-logo" href="01-home.html">Business Name</a>
-    <div class="f-grid">
-      <nav aria-labelledby="f-ex"><h2 id="f-ex">Explore</h2>
-        <a href="01-home.html">Home</a><a href="02-about-story.html">About Us</a><a href="../02-free-plan/01-free-blog-posts-articles.html">Articles</a><a href="21-courses.html">Courses</a><a href="23-library.html">Library</a><a href="24-consulting.html">Consulting</a><a href="19-events.html">Events</a><a href="16-shop-final-look.html">Shop</a><a href="../02-free-plan/02-community-final-look.html">Groups</a><a href="07-campaign-work-with-us-hub.html">Work with us</a><a href="32-case-studies.html">Case studies</a>
-      </nav>
-      <nav aria-labelledby="f-lg"><h2 id="f-lg">Legal Pages</h2>
-        <a href="04-legal-privacy-policy.html">Privacy Policy</a><a href="05-legal-terms-and-conditions.html">Terms &amp; Conditions</a><a href="06-legal-cookie-notice.html">Cookie Notice</a>
-      </nav>
-      <nav aria-labelledby="f-fo"><h2 id="f-fo">Follow</h2>
-        <a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Youtube</a>
-      </nav>
-      <form class="f-form" id="f-form" novalidate>
-        <h2 class="f-title">Get new ideas by email</h2>
-        <div class="f-field"><label for="f-name">Name *</label><input id="f-name" type="text" autocomplete="name" required></div>
-        <div class="f-field"><label for="f-email">Email *</label><input id="f-email" type="email" autocomplete="email" required></div>
-        <label class="f-check f-field"><input type="checkbox" required> <span>I agree to receive emails from [Business Name] and accept the <a href="04-legal-privacy-policy.html">privacy policy</a>. I can unsubscribe at any time.</span></label>
-        <button class="f-btn f-field" type="submit">Subscribe</button>
-        <p class="f-done" role="status">Thanks, you’re subscribed.</p>
-      </form>
-    </div>
-    <div class="f-copy">© 2026 by Business Name · KvK [NUMBER]. Built on <a href="#">Wix Studio</a></div>
-  </div>
+<footer class="lp-foot">
+  <!-- Landing page: no site footer. Only the legal links, which the signup form needs. Wix: page layout "No header & footer", this bar added as a section. -->
+  <div class="wrap"><span>&copy; 2026 [Business Name]</span><span><a href="04-legal-privacy-policy.html">Privacy</a> &middot; <a href="05-legal-terms-and-conditions.html">Terms</a> &middot; <a href="06-legal-cookie-notice.html">Cookie notice</a></span></div>
 </footer>
 
 <script>
