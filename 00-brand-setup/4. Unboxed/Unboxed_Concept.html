@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unboxed — you diversified everything except yourself</title>
+<meta name="description" content="Unboxed is an online academy of short courses that widen what you and your children can do, and teach how to connect it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFDF8; --ink:#1E1B2E; --ink-soft:#4A4560; --line:2.5px solid var(--ink);
+  --sun:#FFC94D; --tangerine:#FF7A45; --raspberry:#F0426E;
+  --grape:#7048E8; --sky:#2F80ED; --leaf:#12B886;
+  --shadow:6px 6px 0 var(--ink); --shadow-sm:4px 4px 0 var(--ink); --r:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Figtree',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;line-height:1.6;}
+::selection{background:var(--sun);color:var(--ink);}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.08;letter-spacing:-0.5px;}
+.mono{font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Space Mono',monospace;font-size:0.7rem;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  border:2px solid var(--ink);border-radius:6px;padding:7px 14px;
+  background:var(--paper);box-shadow:3px 3px 0 var(--ink);margin-bottom:24px;
+}
+.eyebrow::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--raspberry);}
+
+/* NAV */
+nav.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:300;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 4vw;background:var(--paper);border-bottom:var(--line);
+}
+.wordmark{
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.3rem;
+  color:var(--ink);display:inline-flex;align-items:baseline;letter-spacing:-0.5px;
+  background:none;border:none;cursor:pointer;
+}
+.wordmark .boxed{margin-left:3px;border:2.5px solid var(--ink);border-top-color:transparent;border-radius:4px;padding:0 6px 2px;position:relative;}
+.wordmark .boxed::after{content:'';position:absolute;top:-2.5px;left:-2.5px;width:9px;height:2.5px;background:var(--ink);}
+.wordmark .boxed::before{content:'';position:absolute;top:-2.5px;right:-2.5px;width:9px;height:2.5px;background:var(--ink);}
+.nav-links{display:flex;gap:6px;list-style:none;align-items:center;}
+.nav-links a{
+  font-weight:600;font-size:0.88rem;color:var(--ink-soft);text-decoration:none;
+  padding:8px 14px;border-radius:100px;transition:background .15s,color .15s;cursor:pointer;
+}
+.nav-links a:hover,.nav-links a:focus-visible,.nav-links a.on{background:var(--ink);color:var(--paper);}
+.nav-links a.nav-cta{
+  background:var(--sun);color:var(--ink);border:2px solid var(--ink);
+  box-shadow:3px 3px 0 var(--ink);margin-left:8px;font-weight:700;
+  transition:transform .12s,box-shadow .12s;
+}
+.nav-links a.nav-cta:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);background:var(--sun);color:var(--ink);}
+@media(max-width:640px){.nav-links a:not(.nav-cta){padding:8px 9px;font-size:0.8rem;}}
+a:focus-visible,button:focus-visible{outline:3px solid var(--sky);outline-offset:2px;}
+
+.page{display:none;padding-top:68px;min-height:100vh;}
+.page.active{display:block;}
+
+.btn{
+  font-family:'Figtree',sans-serif;font-weight:700;font-size:0.95rem;
+  padding:15px 30px;border-radius:12px;border:2.5px solid var(--ink);
+  cursor:pointer;text-decoration:none;display:inline-block;
+  box-shadow:var(--shadow-sm);transition:transform .12s,box-shadow .12s;
+  color:var(--ink);background:var(--paper);
+}
+.btn:hover,.btn:focus-visible{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink);}
+.btn-sun{background:var(--sun);}
+.btn-ink{background:var(--ink);color:var(--paper);}
+
+/* HERO */
+.hero{padding:74px 5vw 0;border-bottom:var(--line);overflow:hidden;}
+.hero-inner{max-width:1120px;margin:0 auto;}
+.hero h1{font-weight:800;font-size:clamp(2.4rem,5.5vw,4.3rem);letter-spacing:-2px;max-width:920px;margin-bottom:24px;}
+.hero h1 .hl{
+  display:inline-block;padding:0 12px 4px;border-radius:10px;
+  border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  transform:rotate(-1.2deg);background:var(--sun);
+}
+.hero-sub{font-size:1.14rem;color:var(--ink-soft);max-width:640px;margin-bottom:32px;}
+.hero-sub strong{color:var(--ink);}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:56px;}
+
+/* SIGNATURE: allocation bars */
+.alloc-wrap{
+  max-width:1120px;margin:0 auto;
+  border:var(--line);border-bottom:none;border-radius:18px 18px 0 0;
+  background:var(--paper);padding:26px 26px 30px;
+}
+.alloc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:8px;}
+.alloc-head .mono{color:var(--ink-soft);}
+.alloc-row{margin-bottom:20px;}
+.alloc-row:last-of-type{margin-bottom:0;}
+.alloc-label{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap;
+}
+.alloc-label b{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;letter-spacing:-0.3px;}
+.alloc-label em{font-family:'Space Mono',monospace;font-style:normal;font-size:0.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);}
+.bar{display:flex;border:2.5px solid var(--ink);border-radius:11px;overflow:hidden;height:46px;}
+.bar div{
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Space Mono',monospace;font-size:0.56rem;font-weight:700;
+  letter-spacing:0.5px;text-transform:uppercase;
+  border-right:2.5px solid var(--ink);overflow:hidden;white-space:nowrap;padding:0 4px;
+}
+.bar div:last-child{border-right:none;}
+.bar.single div{flex:1;background:var(--ink);color:var(--paper);font-size:0.8rem;letter-spacing:1.5px;}
+.alloc-foot{margin-top:24px;padding-top:18px;border-top:2px dashed var(--ink);font-size:0.95rem;color:var(--ink-soft);max-width:70ch;}
+.alloc-foot strong{color:var(--ink);}
+
+/* BANDS */
+section.band{padding:72px 5vw;border-bottom:var(--line);}
+.band-inner{max-width:1120px;margin:0 auto;}
+section.band h2{font-weight:800;font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:-1px;margin-bottom:16px;max-width:800px;}
+section.band .lead{font-size:1.05rem;color:var(--ink-soft);max-width:660px;}
+
+/* shift */
+.band-shift{background:#F4F0FF;}
+.shift-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:44px;align-items:start;margin-top:6px;}
+@media(max-width:880px){.shift-grid{grid-template-columns:1fr;gap:30px;}}
+.shift-copy p{margin-bottom:16px;color:var(--ink-soft);font-size:1.04rem;max-width:60ch;}
+.shift-copy p strong{color:var(--ink);}
+.thennow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.tn-col{display:flex;flex-direction:column;}
+.tn-label{
+  font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;color:var(--ink-soft);
+  margin-bottom:10px;display:block;
+}
+.tn-label-now{color:var(--ink);}
+.tn{flex:1;border:var(--line);border-radius:14px;padding:20px 18px;box-shadow:var(--shadow-sm);}
+.tn.then{background:var(--paper);}
+.tn.now{background:var(--sun);}
+.tn span{
+  font-family:'Space Mono',monospace;font-size:0.6rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:8px;
+}
+.tn.now span{color:var(--ink);opacity:.7;}
+.tn b{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-0.4px;line-height:1.15;display:block;}
+
+/* connect */
+.band-connect{background:var(--paper);}
+.band-tshape{background:#FFF8E8;}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px;}
+@media(max-width:880px){.vs{grid-template-columns:1fr;}}
+.vs-card{border:var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:30px 28px;position:relative;overflow:hidden;}
+.vs-card::before{content:'';position:absolute;top:0;left:0;right:0;height:10px;background:var(--vc);border-bottom:2.5px solid var(--ink);}
+.vs-a{background:#FFF3F6;--vc:var(--raspberry);}
+.vs-b{background:#F0FBF6;--vc:var(--leaf);}
+.vs-card em{
+  font-family:'Space Mono',monospace;font-style:normal;font-size:0.6rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);display:block;margin:10px 0 10px;
+}
+.vs-card h3{font-size:1.3rem;margin-bottom:10px;}
+.vs-card p{font-size:0.97rem;color:var(--ink-soft);max-width:50ch;}
+/* practice */
+.band-dark{background:var(--ink);color:var(--paper);}
+.band-dark h2{color:var(--paper);}
+.band-dark .lead{color:rgba(255,253,248,.72);}
+.layers{margin-top:34px;border-top:2px solid rgba(255,253,248,.28);}
+.layer{display:grid;grid-template-columns:52px 200px 1fr;gap:22px;padding:20px 0;border-bottom:2px solid rgba(255,253,248,.28);align-items:baseline;}
+@media(max-width:760px){.layer{grid-template-columns:40px 1fr;}.layer .l-num{grid-row:span 2;}}
+.layer .l-num{font-family:'Space Mono',monospace;font-size:0.8rem;font-weight:700;color:var(--sun);}
+.layer .l-key{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:-0.3px;}
+.layer .l-text{font-size:0.98rem;color:rgba(255,253,248,.78);max-width:56ch;}
+.honest{
+  margin-top:34px;border:2px dashed rgba(255,253,248,.45);border-radius:14px;
+  padding:22px 26px;font-size:0.97rem;color:rgba(255,253,248,.78);max-width:820px;
+}
+.honest strong{color:var(--paper);}
+
+/* rooms strip */
+.band-rooms{background:#EAF6FF;}
+.rooms{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
+@media(max-width:880px){.rooms{grid-template-columns:1fr;}}
+.room{border:var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);padding:26px 24px;background:var(--paper);}
+.room span{
+  display:inline-block;margin-bottom:10px;
+  font-family:'Space Mono',monospace;font-size:0.6rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  border:2px solid var(--ink);border-radius:100px;padding:5px 12px;
+}
+.room h3{font-size:1.15rem;margin-bottom:8px;}
+.room p{font-size:0.94rem;color:var(--ink-soft);max-width:48ch;}
+
+/* cta */
+.band-cta{background:var(--sun);text-align:center;}
+.band-cta h2{margin-left:auto;margin-right:auto;}
+.band-cta .lead{margin:0 auto 28px;}
+
+/* VAULT */
+.vault-hero{padding:56px 4vw 40px;border-bottom:var(--line);background:#F4F0FF;}
+.vault-hero-inner{max-width:1240px;margin:0 auto;}
+.vault-hero h1{font-weight:800;font-size:clamp(1.9rem,4.2vw,3rem);letter-spacing:-1.5px;margin-bottom:14px;max-width:840px;}
+.vault-hero p{font-size:1.02rem;color:var(--ink-soft);max-width:660px;}
+.ws-layout{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:236px minmax(0,1fr);gap:32px;padding:36px 4vw 80px;}
+@media(max-width:900px){.ws-layout{grid-template-columns:1fr;}}
+.ws-side{position:sticky;top:88px;align-self:start;display:flex;flex-direction:column;gap:20px;}
+@media(max-width:900px){.ws-side{position:static;}}
+.side-block{border:var(--line);border-radius:14px;background:var(--paper);box-shadow:var(--shadow-sm);padding:18px 16px;}
+.side-block h4{font-family:'Space Mono',monospace;font-size:0.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;color:var(--ink-soft);}
+.search-wrap{position:relative;}
+.search-wrap input{width:100%;font-family:'Figtree',sans-serif;font-size:0.9rem;padding:11px 12px 11px 34px;border:2.5px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink);}
+.search-wrap::before{content:'🔎';position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:0.8rem;pointer-events:none;}
+.filter-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.filter-list button{
+  width:100%;text-align:left;font-family:'Figtree',sans-serif;font-weight:600;font-size:0.86rem;
+  color:var(--ink-soft);background:none;border:2px solid transparent;border-radius:9px;
+  padding:8px 10px;cursor:pointer;display:flex;align-items:center;gap:9px;
+}
+.filter-list button:hover{background:rgba(30,27,46,.05);}
+.filter-list button.on{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.filter-list button i{width:10px;height:10px;border-radius:50%;border:2px solid var(--ink);flex-shrink:0;}
+.filter-list button.on i{border-color:var(--paper);}
+.filter-list button .n{margin-left:auto;font-family:'Space Mono',monospace;font-size:0.62rem;opacity:.65;}
+.side-note{font-size:0.8rem;color:var(--ink-soft);line-height:1.5;}
+.side-note strong{color:var(--ink);}
+.vault-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:1240px){.vault-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.vault-grid{grid-template-columns:1fr;}}
+.v-card{
+  border:var(--line);border-radius:var(--r);background:var(--paper);box-shadow:var(--shadow-sm);
+  padding:22px 22px 18px;cursor:pointer;display:flex;flex-direction:column;gap:9px;
+  position:relative;overflow:hidden;transition:transform .13s;text-align:left;font-family:'Figtree',sans-serif;
+}
+
+.v-card:hover{transform:translateY(-3px);}
+.v-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:9px;}
+.v-emoji{font-size:1.5rem;line-height:1;}
+.v-card h3{font-size:1.3rem;letter-spacing:-0.5px;}
+.v-plain{font-weight:700;font-size:0.9rem;}
+.v-desc{font-size:0.88rem;color:var(--ink-soft);flex-grow:1;}
+.v-more{font-weight:700;font-size:0.82rem;margin-top:4px;}
+.tag{
+  font-family:'Space Mono',monospace;font-size:0.56rem;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;padding:4px 9px;border-radius:6px;border:1.5px solid var(--ink);
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+}
+.tag i{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink);}
+.badge{
+  font-family:'Space Mono',monospace;font-size:0.55rem;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;border:2px solid var(--ink);border-radius:100px;padding:4px 10px;
+  background:var(--leaf);white-space:nowrap;
+}
+/* sign-up */
+.signup{
+  border:var(--line);border-radius:14px;background:#F0FBF6;
+  padding:22px 24px;margin:0 0 26px;
+}
+.signup h4{font-size:1.05rem;margin-bottom:6px;}
+.signup .su-note{font-size:0.86rem;color:var(--ink-soft);margin-bottom:16px;}
+.su-opts{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;}
+.su-opt{
+  display:flex;gap:12px;align-items:flex-start;
+  border:2px solid var(--ink);border-radius:12px;background:var(--paper);
+  padding:12px 14px;cursor:pointer;
+}
+.su-opt.fixed{background:rgba(30,27,46,.05);cursor:default;}
+.su-opt input{
+  appearance:none;width:20px;height:20px;flex-shrink:0;margin-top:2px;
+  border:2.5px solid var(--ink);border-radius:6px;background:var(--paper);cursor:pointer;
+}
+.su-opt input:checked{background:var(--sun);box-shadow:inset 0 0 0 3px var(--paper);}
+.su-opt input:disabled{background:var(--ink);box-shadow:inset 0 0 0 3px var(--paper);cursor:default;}
+.su-opt .su-label{font-weight:700;font-size:0.94rem;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;}
+.su-opt .su-desc{display:block;font-weight:400;font-size:0.85rem;color:var(--ink-soft);margin-top:3px;}
+.su-price{
+  font-family:'Space Mono',monospace;font-size:0.62rem;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;border:2px solid var(--ink);
+  border-radius:100px;padding:3px 9px;background:var(--sun);white-space:nowrap;
+}
+.su-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+@media(max-width:620px){.su-fields{grid-template-columns:1fr;}}
+.su-fields input{
+  width:100%;font-family:'Figtree',sans-serif;font-size:0.95rem;
+  padding:12px 14px;border:2.5px solid var(--ink);border-radius:10px;
+  background:var(--paper);color:var(--ink);
+}
+.su-msg{margin-top:12px;font-size:0.88rem;font-weight:700;display:none;}
+.su-done{
+  border:2px dashed var(--ink);border-radius:12px;background:var(--paper);
+  padding:20px 22px;text-align:center;display:none;
+}
+.su-done strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;margin-bottom:6px;}
+.d-top-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.btn-sm{
+  font-family:'Figtree',sans-serif;font-weight:700;font-size:0.84rem;
+  padding:9px 18px;border-radius:10px;border:2.5px solid var(--ink);
+  cursor:pointer;text-decoration:none;display:inline-block;
+  box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s;
+  color:var(--ink);background:var(--paper);
+}
+.btn-sm:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink);}
+.btn-sm.ink{background:var(--ink);color:var(--paper);}
+/* covers */
+.cover{
+  position:relative;height:112px;margin:-22px -22px 4px;
+  border-bottom:2.5px solid var(--ink);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background-size:cover;background-position:center;
+}
+.cover .cv-emoji{
+  font-size:2.6rem;line-height:1;position:relative;z-index:2;
+  filter:drop-shadow(2px 2px 0 rgba(30,27,46,.25));
+}
+.cover .cv-pattern{position:absolute;inset:0;opacity:.55;}
+.s-card .cover{height:132px;margin:-22px -22px 6px;}
+.s-card .cover .cv-emoji{font-size:3rem;}
+.cover-wide{
+  height:150px;margin:0;border-bottom:var(--line);border-radius:0;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;
+}
+.cover-wide .cv-emoji{font-size:3.6rem;}
+@media(max-width:640px){.cover-wide{height:110px;}.cover-wide .cv-emoji{font-size:2.6rem;}}
+/* three layers pages */
+.layer-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px;}
+.ln{
+  font-family:'Space Mono',monospace;font-size:0.6rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  border:2px solid var(--ink);border-radius:100px;padding:7px 14px;
+  background:var(--paper);color:var(--ink-soft);cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.ln.on{background:var(--ink);color:var(--paper);}
+.ln b{font-weight:700;}
+.prod{
+  border:var(--line);border-radius:var(--r);background:var(--paper);
+  box-shadow:var(--shadow);overflow:hidden;max-width:880px;margin-bottom:28px;
+}
+.prod-top{padding:26px 32px;border-bottom:var(--line);background:var(--pc,var(--sun));}
+.prod-top h3{font-size:clamp(1.3rem,2.8vw,1.9rem);letter-spacing:-0.8px;margin-bottom:8px;}
+.prod-top p{font-size:0.96rem;color:var(--ink);opacity:.85;max-width:60ch;}
+.combo{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:20px 32px;border-bottom:2px dashed var(--ink);background:rgba(30,27,46,.03);}
+.combo .cl{
+  font-family:'Space Mono',monospace;font-size:0.56rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-right:4px;
+}
+.combo .cx{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.1rem;}
+.cpill{
+  font-family:'Figtree',sans-serif;font-weight:700;font-size:0.84rem;
+  border:2px solid var(--ink);border-radius:100px;padding:6px 14px;
+  background:var(--paper);cursor:pointer;box-shadow:2px 2px 0 var(--ink);
+}
+.cpill:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
+.prod-body{padding:26px 32px 10px;}
+.soon{
+  border:2px dashed var(--ink);border-radius:14px;padding:20px 26px;
+  font-size:0.94rem;color:var(--ink-soft);max-width:880px;background:rgba(255,255,255,.5);
+}
+.soon strong{color:var(--ink);}
+/* contact */
+.contact-hero{padding:60px 5vw 44px;border-bottom:var(--line);background:#EAF6FF;}
+.contact-hero-inner{max-width:1120px;margin:0 auto;}
+.contact-hero h1{font-weight:800;font-size:clamp(1.9rem,4.2vw,3rem);letter-spacing:-1.5px;margin-bottom:14px;max-width:760px;}
+.contact-hero p{font-size:1.04rem;color:var(--ink-soft);max-width:600px;}
+.contact-layout{max-width:1120px;margin:0 auto;padding:44px 5vw 80px;display:grid;grid-template-columns:1fr 340px;gap:44px;align-items:start;}
+@media(max-width:900px){.contact-layout{grid-template-columns:1fr;gap:30px;}}
+.cform{border:var(--line);border-radius:var(--r);background:var(--paper);box-shadow:var(--shadow);padding:30px 30px 26px;}
+.cform h2{font-size:1.4rem;margin-bottom:8px;}
+.cform .cf-note{font-size:0.9rem;color:var(--ink-soft);margin-bottom:22px;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+@media(max-width:620px){.cf-row{grid-template-columns:1fr;}}
+.cf-field{margin-bottom:14px;}
+.cf-field label,.cf-row label{
+  display:block;font-family:'Space Mono',monospace;font-size:0.62rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px;color:var(--ink-soft);
+}
+.cform input,.cform textarea,.cform select{
+  width:100%;font-family:'Figtree',sans-serif;font-size:0.95rem;
+  padding:12px 14px;border:2.5px solid var(--ink);border-radius:10px;
+  background:var(--paper);color:var(--ink);
+}
+.cform textarea{min-height:150px;resize:vertical;}
+.cform select{cursor:pointer;}
+.cf-msg{margin-top:12px;font-size:0.88rem;font-weight:700;display:none;}
+.cf-done{border:var(--line);border-radius:var(--r);background:var(--paper);box-shadow:var(--shadow);padding:48px 32px;text-align:center;display:none;}
+.cf-done .cd-mark{font-size:2.4rem;margin-bottom:12px;}
+.cf-done h2{font-size:1.4rem;margin-bottom:8px;}
+.cf-done p{color:var(--ink-soft);}
+.cside{display:flex;flex-direction:column;gap:18px;}
+.cbox{border:var(--line);border-radius:14px;background:var(--paper);box-shadow:var(--shadow-sm);padding:20px 20px;}
+.cbox h4{font-family:'Space Mono',monospace;font-size:0.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;}
+.cbox p{font-size:0.92rem;color:var(--ink-soft);}
+.cbox a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:2.5px solid var(--sun);}
+.cbox a:hover{background:var(--sun);}
+.cbox ul{list-style:none;}
+.cbox li{padding:7px 0;border-bottom:1.5px dashed rgba(30,27,46,.2);font-size:0.9rem;color:var(--ink-soft);}
+.cbox li:last-child{border-bottom:none;}
+/* series */
+.sec-label{
+  font-family:'Space Mono',monospace;font-size:0.64rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);
+  margin:34px 0 14px;display:block;
+}
+.sec-label:first-child{margin-top:0;}
+.series-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+@media(max-width:900px){.series-cards{grid-template-columns:1fr;}}
+.s-card{
+  border:var(--line);border-radius:var(--r);background:var(--paper);
+  box-shadow:var(--shadow-sm);padding:22px 22px 18px;cursor:pointer;
+  text-align:left;font-family:'Figtree',sans-serif;position:relative;overflow:hidden;
+  transition:transform .13s;display:flex;flex-direction:column;gap:8px;
+}
+
+.s-card:hover{transform:translateY(-3px);}
+.s-card .s-emoji{font-size:1.5rem;line-height:1;margin-top:9px;}
+.s-card h3{font-size:1.25rem;letter-spacing:-0.4px;}
+.s-card p{font-size:0.88rem;color:var(--ink-soft);flex-grow:1;}
+.s-card .s-meta{
+  font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);
+}
+.s-card .s-go{font-weight:700;font-size:0.82rem;margin-top:4px;}
+.series-head{
+  border:var(--line);border-radius:var(--r);background:var(--paper);
+  box-shadow:var(--shadow);overflow:hidden;max-width:880px;margin-bottom:26px;
+}
+.series-head-top{padding:22px 28px;border-bottom:var(--line);background:var(--paper);}
+.series-head-top .sh-row{display:flex;gap:14px;align-items:flex-start;}
+.series-head-top .s-emoji{font-size:1.9rem;line-height:1;}
+.series-head-top h2{font-size:clamp(1.3rem,2.6vw,1.8rem);margin-bottom:6px;letter-spacing:-0.6px;}
+.series-head-top p{font-size:0.93rem;color:var(--ink-soft);max-width:620px;}
+.series-steps{padding:12px 28px 20px;}
+.s-step{
+  display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:center;
+  padding:12px 8px;border-bottom:1.5px dashed rgba(30,27,46,.2);
+  cursor:pointer;border-radius:8px;width:100%;text-align:left;
+  background:none;border-left:none;border-right:none;border-top:none;font-family:'Figtree',sans-serif;
+}
+.s-step:last-child{border-bottom:none;}
+.s-step:hover{background:rgba(30,27,46,.05);}
+.s-num{
+  font-family:'Space Mono',monospace;font-weight:700;font-size:0.68rem;
+  border:2px solid var(--ink);border-radius:8px;width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;background:var(--c);
+}
+.s-step .s-name{font-weight:700;font-size:0.95rem;}
+.s-step .s-sub{display:block;font-weight:400;font-size:0.85rem;color:var(--ink-soft);margin-top:2px;}
+.s-step.coming{cursor:default;opacity:.55;}
+.s-step.coming:hover{background:transparent;}
+.pill-soon{
+  font-family:'Space Mono',monospace;font-size:0.52rem;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;border:2px solid var(--ink);
+  border-radius:100px;padding:3px 8px;margin-left:8px;background:var(--paper);
+}
+.d-series{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  border:2px dashed var(--ink);border-radius:12px;padding:12px 16px;
+  margin-bottom:22px;font-size:0.88rem;color:var(--ink-soft);
+}
+.d-series button{
+  font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;border:2px solid var(--ink);
+  border-radius:100px;padding:5px 12px;background:var(--paper);cursor:pointer;
+  box-shadow:2px 2px 0 var(--ink);
+}
+.v-empty{border:2px dashed var(--ink);border-radius:var(--r);padding:44px 30px;text-align:center;color:var(--ink-soft);grid-column:1/-1;}
+.v-empty strong{color:var(--ink);}
+.d-back{
+  font-family:'Space Mono',monospace;font-size:0.64rem;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;border:2px solid var(--ink);border-radius:100px;background:var(--paper);
+  padding:8px 16px;cursor:pointer;margin-bottom:20px;box-shadow:2px 2px 0 var(--ink);
+}
+.detail-panel{border:var(--line);border-radius:var(--r);background:var(--paper);box-shadow:var(--shadow);overflow:hidden;max-width:880px;}
+.detail-head{padding:24px 32px;border-bottom:var(--line);background:var(--paper);}
+.dh-row{display:flex;gap:14px;align-items:flex-start;}
+.dh-row .d-emoji{font-size:2rem;line-height:1;}
+.detail-head h2{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:4px;letter-spacing:-0.8px;}
+.detail-head .d-plain{font-weight:700;font-size:0.95rem;margin-bottom:10px;}
+.dh-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.detail-body{padding:28px 32px 8px;}
+.d-desc{font-size:1.02rem;color:var(--ink-soft);margin-bottom:26px;max-width:62ch;}
+.d-h4{font-family:'Space Mono',monospace;font-size:0.64rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
+.d-sub{font-size:0.9rem;color:var(--ink-soft);margin-bottom:16px;max-width:60ch;}
+.curr{margin-bottom:30px;}
+.curr-item{display:grid;grid-template-columns:36px 1fr;gap:14px;padding:11px 0;border-bottom:1.5px dashed rgba(30,27,46,.2);}
+.curr-item:last-child{border-bottom:none;}
+.curr-num{font-family:'Space Mono',monospace;font-weight:700;font-size:0.7rem;border:2px solid var(--ink);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--dc);}
+.curr-item strong{display:block;font-size:0.98rem;}
+.curr-item span{font-size:0.9rem;color:var(--ink-soft);}
+.meta-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;}
+@media(max-width:760px){.meta-strip{grid-template-columns:1fr 1fr;}}
+@media(max-width:440px){.meta-strip{grid-template-columns:1fr;}}
+.meta-item{border:2px solid var(--ink);border-radius:12px;padding:13px 15px;background:rgba(30,27,46,.03);}
+.meta-item label{display:block;font-family:'Space Mono',monospace;font-size:0.56rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+.meta-item span{font-weight:700;font-size:0.88rem;}
+.d-promise{border:2px dashed var(--ink);border-radius:14px;background:#FFF8E8;padding:18px 22px;margin-bottom:30px;font-size:0.94rem;color:var(--ink-soft);max-width:66ch;}
+.d-promise strong{color:var(--ink);}
+.detail-foot{padding:22px 32px 26px;border-top:var(--line);display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:#FFF8E8;}
+.detail-foot .foot-note{font-size:0.82rem;color:var(--ink-soft);}
+
+footer{padding:36px 5vw;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+footer .wordmark{color:var(--paper);}
+footer .wordmark .boxed{border-color:var(--paper);border-top-color:transparent;}
+footer .wordmark .boxed::before,footer .wordmark .boxed::after{background:var(--paper);}
+footer p{font-size:0.82rem;color:rgba(255,253,248,.6);}
+footer nav{display:flex;gap:22px;}
+footer nav a{color:rgba(255,253,248,.75);text-decoration:none;font-size:0.86rem;font-weight:600;cursor:pointer;}
+footer nav a:hover{color:var(--paper);}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important;}}
+</style>
+</head>
+<body>
+
+<form name="signup" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="kind"><input type="text" name="course">
+  <input type="text" name="name"><input type="email" name="email">
+  <input type="text" name="book">
+  <input type="text" name="sentAt"><input type="text" name="bot-field">
+</form>
+
+<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name"><input type="email" name="email">
+  <input type="text" name="topic"><textarea name="message"></textarea>
+  <input type="text" name="sentAt"><input type="text" name="bot-field">
+</form>
+
+<nav class="topnav">
+  <button class="wordmark" onclick="showPage('about')" aria-label="Unboxed, home">Un<span class="boxed">boxed</span></button>
+  <ul class="nav-links">
+    <li><a id="nav-about" class="on" onclick="showPage('about')" tabindex="0">What this is</a></li>
+    <li><a id="nav-vault" onclick="showPage('vault')" tabindex="0">Build Skills</a></li>
+    <li><a id="nav-connect" onclick="showPage('connect')" tabindex="0">Connections</a></li>
+    <li><a id="nav-judge" onclick="showPage('judge')" tabindex="0">Judgement</a></li>
+    <li><a id="nav-contact" class="nav-cta" onclick="showPage('contact')" tabindex="0">Get in touch</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════ LANDING ═══════════ -->
+<div class="page active" id="page-about">
+
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Online courses</span>
+      <h1>You diversified everything <span class="hl">except yourself.</span></h1>
+      <p class="hero-sub">Your savings sit across funds, countries and currencies, because nobody sensible keeps it all in one place. <strong>Your income comes from one skill.</strong> So does your child's education. When did you last look at those two the way you look at the portfolio?</p>
+      <div class="hero-btns">
+        <a class="btn btn-ink" onclick="showPage('vault')" tabindex="0">See what's in the Vault</a>
+        <a class="btn btn-sun" onclick="showPage('contact')" tabindex="0">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="alloc-wrap">
+      <div class="alloc-head">
+        <span class="mono">Your allocations</span>
+        <span class="mono">One of these got careful thought</span>
+      </div>
+
+      <div class="alloc-row">
+        <div class="alloc-label"><b>Money</b><em>Spread across 7</em></div>
+        <div class="bar" id="bar-money"></div>
+      </div>
+
+      <div class="alloc-row">
+        <div class="alloc-label"><b>Income</b><em>All of it, one place</em></div>
+        <div class="bar single"><div id="bar-income">Engineer</div></div>
+      </div>
+
+      <div class="alloc-row">
+        <div class="alloc-label"><b>Your child's learning</b><em>All of it, one place</em></div>
+        <div class="bar single"><div>One curriculum</div></div>
+      </div>
+
+      <p class="alloc-foot"><strong>Nobody plans it this way.</strong> Going deep was the sensible thing to do and it paid — it still pays for everything on this page. Which makes one question worth sitting with: if that single skill were worth less in five years, what else would you have?</p>
+    </div>
+  </header>
+
+  <section class="band band-shift">
+    <div class="band-inner">
+      <h2>What AI changed, and what it didn't</h2>
+      <div class="shift-grid">
+        <div class="shift-copy">
+          <p>For decades, going deep into one field was the safest move available. Knowledge was hard to reach, so being the person who held it was valuable in itself.</p>
+          <p><strong>AI has not made specialists useless.</strong> What it has done is make everyone else's field cheap to reach. The knowledge you used to be paid for holding is now a question away — for you, and for anyone competing with you.</p>
+          <p>What is still hard is judgement — knowing which part of all that information matters in front of you, how it fits with everything else, and what to do when your situation is not the one in the manual. That is the part you cannot look up, and it is built by working on more than one kind of problem.</p>
+        </div>
+        <div class="thennow">
+          <div class="tn-col">
+            <span class="tn-label">Then</span>
+            <div class="tn then"><b>Knowing something other people didn't was enough.</b></div>
+          </div>
+          <div class="tn-col">
+            <span class="tn-label tn-label-now">Now</span>
+            <div class="tn now"><b>What pays now is leveraging what one field already knows on a problem sitting in another.</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-tshape">
+    <div class="band-inner">
+      <h2>You are probably already T-shaped, but not for the world.</h2>
+      <p class="lead">The standard advice is to be T-shaped: deep in one thing, wide across others. Most specialists already have the width. It just came from the job — the teams you had to work with, the tools you were handed, the neighbouring functions you learned because a project needed them.</p>
+      <div class="vs">
+        <div class="vs-card vs-a">
+          <em>The one you have</em>
+          <h3>T-shaped for your job</h3>
+          <p>Deep in your specialism, and wide enough to hold your own with the software team, the supplier and the finance side. Every bit of that width was learned because the role needed it — so all of it rises and falls with the same industry, at the same time.</p>
+        </div>
+        <div class="vs-card vs-b">
+          <em>The one that protects you</em>
+          <h3>T-shaped for the world</h3>
+          <p>The same depth, but the width comes from fields with no connection to your work at all. Because nothing in it depends on your industry, none of it is repriced when your industry is.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-connect">
+    <div class="band-inner">
+      <h2>Learning many things is the easy half</h2>
+      <p class="lead">This is the distinction the whole idea rests on, and it's the one most people skip.</p>
+      <div class="vs">
+        <div class="vs-card vs-a">
+          <em>Collecting</em>
+          <h3>Jack of all trades</h3>
+          <p>Ten hobbies, ten shallow shelves, nothing touching anything else. Interesting at dinner, worth nothing at work, and the usual result of just doing more courses.</p>
+        </div>
+        <div class="vs-card vs-b">
+          <em>Connecting</em>
+          <h3>Polymath</h3>
+          <p>The same ten things, wired together — so a problem in your own field gets solved with something borrowed from one of the others. The wiring is the whole value.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-dark">
+    <div class="band-inner">
+      <h2>How this actually works</h2>
+      <p class="lead">Nothing here runs as a programme. You take what interests you, when it interests you.</p>
+      <div class="layers">
+        <div class="layer">
+          <span class="l-num">01</span>
+          <span class="l-key">Keep the depth you have</span>
+          <span class="l-text">Your specialism is the asset, not the problem — it is what gives you something real to bring when you step outside it. For a child, school is that depth. It carries on exactly as it is, nothing here competes with it, and none of it is homework.</span>
+        </div>
+        <div class="layer">
+          <span class="l-num">02</span>
+          <span class="l-key">Pick what interests you</span>
+          <span class="l-text">Courses are on unrelated subjects on purpose, and you take only the ones that pull you. For children that choice is the entire point: curiosity they chose themselves is the kind that lasts, and choosing is a habit in its own right.</span>
+        </div>
+        <div class="layer">
+          <span class="l-num">03</span>
+          <span class="l-key">Learn how to learn</span>
+          <span class="l-text">Every course is also a worked example of getting into an unfamiliar subject from nothing — where to start, what to skip, and how to find the few things that hold a subject up. That method is what you keep. It works on the next subject without us.</span>
+        </div>
+        <div class="layer">
+          <span class="l-num">04</span>
+          <span class="l-key">Put two unrelated things together</span>
+          <span class="l-text">Taking a method from one field and using it on a problem in another is the move that separates a polymath from someone with a lot of hobbies. It is taught here directly, across unrelated subjects, because left to chance it simply doesn't happen.</span>
+        </div>
+      </div>
+      <div class="honest">
+        <strong>What we won't claim.</strong> Nobody becomes a polymath in three months or three courses, and anyone selling that is selling a certificate. It is a lifelong habit. What Unboxed does is instil the curiosity and hand over the method for learning anything — where that goes next is yours.
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-rooms">
+    <div class="band-inner">
+      <h2>One habit, two generations.</h2>
+      <p class="lead">Unboxed is built for a household rather than a demographic. The same idea covers the parent whose income rests on one skill and the child whose week is organised around one way of learning.</p>
+      <div class="rooms">
+        <div class="room">
+          <span>Adults</span>
+          <h3>People with one deep skill</h3>
+          <p>Excellent at the thing they were trained into, and aware that the ground underneath it is moving.</p>
+        </div>
+        <div class="room">
+          <span>Kids</span>
+          <h3>Curiosity alongside the curriculum</h3>
+          <p>School continues exactly as it is and does its job well. These courses sit next to it — subjects children choose for themselves, nothing graded — so curiosity becomes a habit early.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-cta">
+    <div class="band-inner">
+      <h2>Open the Vault.</h2>
+      <p class="lead">Every session Unboxed has built, what each one covers, and what you walk out knowing.</p>
+      <a class="btn btn-ink" onclick="showPage('vault')" tabindex="0">Open the Vault</a>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════ VAULT ═══════════ -->
+<div class="page" id="page-vault">
+  <header class="vault-hero">
+    <div class="vault-hero-inner">
+      <span class="eyebrow">The Vault</span>
+      <h1>Five courses that have nothing to do with each other.</h1>
+      <p>That is not a gap in the collection. Each one stands alone and is worth taking alone. What happens when you hold them against each other is separate work, and it lives on the next two pages.</p>
+    </div>
+  </header>
+
+  <div class="ws-layout">
+    <aside class="ws-side">
+      <div class="side-block">
+        <h4>The three layers</h4>
+        <ul class="filter-list" id="steps-vault"></ul>
+      </div>
+      <div class="side-block">
+        <h4>Search</h4>
+        <div class="search-wrap"><input id="q" type="text" placeholder="Find a course" oninput="doSearch()" aria-label="Search courses"></div>
+      </div>
+      <div class="side-block" id="collections-block">
+        <h4>Collections</h4>
+        <ul class="filter-list" id="filter-series"></ul>
+      </div>
+      <div class="side-block">
+        <p class="side-note"><strong>Five to begin with.</strong> Unrelated on purpose. The joining up happens in Build Connections, not here.</p>
+      </div>
+    </aside>
+    <div>
+      <div id="grid-view"></div>
+      <div id="series-view" style="display:none;"></div>
+      <div id="detail-view" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<div class="page" id="page-contact">
+  <header class="contact-hero">
+    <div class="contact-hero-inner">
+      <span class="eyebrow">Get in touch</span>
+      <h1>Ask anything.</h1>
+      <p>About a course, a group booking, or something you wish existed.</p>
+    </div>
+  </header>
+
+  <div class="contact-layout">
+    <div>
+      <div class="cform" id="cform">
+        <h2>Send a message</h2>
+        <p class="cf-note">Everything here reaches one person, and that person replies.</p>
+        <div class="cf-row">
+          <div><label for="cf-name">Your name</label><input id="cf-name" type="text" placeholder="First name is fine"></div>
+          <div><label for="cf-email">Email</label><input id="cf-email" type="email" placeholder="you@example.com"></div>
+        </div>
+        <div class="cf-field">
+          <label for="cf-topic">What is this about?</label>
+          <select id="cf-topic">
+            <option>A specific course</option>
+            <option>Whether this suits my child</option>
+            <option>Dates and availability</option>
+            <option>An in-person session for a group or school</option>
+            <option>Suggesting a course</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="cf-field">
+          <label for="cf-message">Your message</label>
+          <textarea id="cf-message" placeholder="As much or as little detail as you like."></textarea>
+        </div>
+        <button class="btn btn-ink" onclick="submitContact()">Send message</button>
+        <p class="cf-msg" id="cf-msg"></p>
+      </div>
+      <div class="cf-done" id="cf-done">
+        <div class="cd-mark">📮</div>
+        <h2>Message sent.</h2>
+        <p>Thanks — you will get a reply at the address you gave.</p>
+      </div>
+    </div>
+
+    <aside class="cside">
+      <div class="cbox">
+        <h4>Email</h4>
+        <p><a href="mailto:hello@unboxed.example">hello@unboxed.example</a></p>
+        <p style="margin-top:8px;">If you would rather write directly, this reaches the same place as the form.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- ══════════════════ CONNECTIONS ══════════════════ -->
+<div class="page" id="page-connect">
+  <header class="vault-hero" style="background:#FFF3F6;">
+    <div class="vault-hero-inner">
+      <span class="eyebrow">Layer two · Build Connections</span>
+      <h1>Two courses is not the same as two courses joined up.</h1>
+      <p>A course teaches you a subject. A connection takes two that have no business being in the same room and does the joining properly — which is the part that turns a collection of interests into something that answers a question.</p>
+    </div>
+  </header>
+  <div class="ws-layout">
+    <aside class="ws-side">
+      <div class="side-block">
+        <h4>The three layers</h4>
+        <ul class="filter-list" id="steps-connect"></ul>
+      </div>
+      <div class="side-block">
+        <h4>Who it's for</h4>
+        <ul class="filter-list" id="who-connect"></ul>
+      </div>
+      <div class="side-block">
+        <p class="side-note"><strong>Three for now.</strong> All of them sit on top of the same five courses — a connection is only worth building once its parts exist.</p>
+      </div>
+    </aside>
+    <div>
+      <div id="grid-connect"></div>
+      <div id="detail-connect" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ JUDGEMENT ══════════════════ -->
+<div class="page" id="page-judge">
+  <header class="vault-hero" style="background:#F0FBF6;">
+    <div class="vault-hero-inner">
+      <span class="eyebrow">Layer three · Build Judgement</span>
+      <h1>Knowing when a borrowed idea fits — and when it does not.</h1>
+      <p>Connecting two fields is easy to do badly. Judgement is testing the join against something real, keeping the part that works, and dropping the part that does not. It is the layer that separates a polymath from someone who is merely well read.</p>
+    </div>
+  </header>
+  <div class="ws-layout">
+    <aside class="ws-side">
+      <div class="side-block">
+        <h4>The three layers</h4>
+        <ul class="filter-list" id="steps-judge"></ul>
+      </div>
+      <div class="side-block">
+        <h4>Who it's for</h4>
+        <ul class="filter-list" id="who-judge"></ul>
+      </div>
+      <div class="side-block">
+        <p class="side-note"><strong>One, and it is the point.</strong> Everything below it exists so that this one can be attempted honestly.</p>
+      </div>
+    </aside>
+    <div>
+      <div id="grid-judge"></div>
+      <div id="detail-judge" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <button class="wordmark" onclick="showPage('about')" aria-label="Unboxed, home">Un<span class="boxed">boxed</span></button>
+  <nav>
+    <a onclick="showPage('about')" tabindex="0">What this is</a>
+    <a onclick="showPage('vault')" tabindex="0">Build Skills</a>
+    <a onclick="showPage('connect')" tabindex="0">Connections</a>
+    <a onclick="showPage('judge')" tabindex="0">Judgement</a>
+    <a onclick="showPage('contact')" tabindex="0">Get in touch</a>
+  </nav>
+  <p>hello@unboxed.example</p>
+</footer>
+
+<script>
+/* ══════════ HERO: allocation bars ══════════ */
+const MONEY=[
+  ['Index funds',24,'var(--sky)'],['Bonds',16,'var(--leaf)'],['Property',18,'var(--sun)'],
+  ['Pension',15,'var(--grape)'],['Savings',12,'var(--tangerine)'],['Foreign',9,'var(--raspberry)'],['Other',6,'var(--paper)']
+];
+document.getElementById('bar-money').innerHTML=
+  MONEY.map(([n,w,c])=>`<div style="flex:${w};background:${c};" title="${n}">${w>=12?n:''}</div>`).join('');
+
+const ROLES=['Engineer','Architect','Analyst','Radiologist','Developer','Consultant','Accountant'];
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const el=document.getElementById('bar-income');let i=0;
+  setInterval(()=>{i=(i+1)%ROLES.length;el.textContent=ROLES[i];},2600);
+})();
+
+/* ══════════ CONFIG ══════════
+   HOST: Netlify. Sign-ups are captured by Netlify Forms — no other service needed.
+   Set your real email below. Set prices, or leave '' to hide a price tag. */
+const PRICES = { course:'', book:'' };
+const CONTACT = 'hello@unboxed.example';
+
+/* ══════════ VAULT DATA ══════════ */
+const W = {  /* add status:"open" to any course that is finished and on sale */
+  acting:{emoji:"🎭",name:"Acting & On-Camera",desc:"Record yourself, watch it back, go again. The camera becomes a friendly mirror.",long:"The camera is an honest mirror — and in this course, a friendly one. Children record themselves telling a story, watch the result together, and shoot a second take. Then they step into a character, which turns out to be the fastest way to discover <strong>who they are when they're not playing anyone.</strong> By the end, being seen feels like a skill, not a fear.",make:"A filmed screen test & character scene",duration:"One course",curriculum:[["The Camera Mirror","Record, watch back, and spot the gap between how you felt and how you looked"],["Body & Voice Basics","Posture, gesture and projection — your body speaks before your words do"],["Stepping into Character","Borrow someone else's shoes and find out what's yours"],["Playing the Scene","Act a short scene with a partner, on camera, for real"],["The Second Take","Use what you saw in take one to make take two visibly better"]]},
+  cinematography:{status:"open",emoji:"🎬",name:"Cinematography & Lighting",desc:"See like a director — camera, framing and light, shot together as a real crew. Open now.",long:"Why does one shot feel exciting and another feel sad — before anyone says a word? Children learn the answer with a camera in their hands: framing, angles, movement and light. Then comes the real lesson: <strong>a scene is shot by a crew, not a person.</strong> Everyone gets a role, and the shot only works when every role does.",make:"A short film they shot themselves",duration:"Half-day session",curriculum:[["Rule of Thirds","Why your eye feels comfortable in some shots and restless in others"],["Framing & Composition","Leading lines, negative space, and the art of what you leave out"],["Angles & Movement","How a camera angle changes the entire feeling of a scene"],["Light Awareness","Reading and using the light around you — no studio needed"],["Shooting on Phone","Settings, stabilisation, and pro techniques on any smartphone"],["Directing AI Video Tools","Using cinematography vocabulary to direct AI video tools like a pro"]]},
+  colormood:{emoji:"🎨",name:"Colour & Mood",desc:"Why do warm images feel safe and cold ones feel tense? Grade one scene into three moods.",long:"The same scene can feel cosy, eerie or heroic — change nothing but the colour. Children learn colour grading by doing exactly that: taking one scene and grading it into three completely different moods. Along the way they learn to read what colour does to a viewer's feelings — <strong>and to choose the feeling on purpose.</strong>",make:"One scene, three moods",duration:"One course",curriculum:[["Colour Is a Feeling","Before it's a look, colour is an emotion"],["Warm vs Cold","Warm pulls people in, cold pushes them back"],["The Grading Tools","Hands on the wheels: lift, shadows, saturation"],["Three Moods, One Scene","Grade the same scene cosy, eerie and heroic"],["Grading for Story","Choose the feeling the story needs — on purpose"]]},
+  directing:{emoji:"🎥",name:"Directing & Blocking",desc:"Run a real set: decide the shot, place the actors, guide the crew — and own the result.",long:"The director is the person on set who has to decide — kindly, clearly, and now. Children each take the chair for a scene: placing actors (that's \"blocking\"), briefing the crew, calling action, and owning the result. Leading turns out to be less about being loud and more about <strong>knowing what you want and helping everyone get there.</strong>",make:"A scene they directed, start to finish",duration:"One course",curriculum:[["The Director's Job","Deciding — kindly, clearly, and on time"],["Blocking the Scene","Where people stand tells the story"],["Briefing the Crew","Say what you want so others can give it to you"],["Calling Action","Run a real take from \"quiet on set\" to \"cut\""],["Owning the Result","The director's deal: own the result, share the credit"]]},
+  draftthree:{emoji:"🔁",name:"Draft Three",desc:"First tries are for learning. Take one piece of work through three honest versions.",long:"\"I'm done\" usually means \"I'm tired of it.\" This course builds the muscle that separates finishers from starters: taking one piece of work — a drawing, a text, a clip — through three honest versions, with feedback between each. At the end, draft one and draft three hang side by side. <strong>Nobody has to explain why revising matters. They can see it.</strong>",make:"One piece of work: version 1 and version 3, side by side",duration:"One course",curriculum:[["Draft One Without Fear","First tries are for learning, not judging"],["Honest Looking","See your own work the way a stranger would"],["Feedback In","Collect what helps, park what doesn't"],["Version Up","Rebuild it better — the craft of the second try"],["Side by Side","Hang draft one next to draft three. No words needed"]]},
+  edit:{emoji:"✂️",name:"The Edit",desc:"Selecting, cutting, revising — including cutting the shot you love because the story asks.",long:"Editing is where films are truly made — and where children meet the craft's famous test: <strong>cutting the shot you love because the story is better without it.</strong> They take raw footage from version one to version three, and we show the drafts side by side, because the distance between them is the learning, made visible.",make:"A final cut — plus the drafts that led there",duration:"One course",curriculum:[["The Editor's Eye","Watching footage like an editor: what serves the story?"],["The Cut & the Rhythm","Where you cut decides how the scene feels"],["Killing Your Darlings","Cut the shot you love — the editor's famous test"],["Feedback & Version Two","Show the cut, hear the room, revise"],["The Final Cut","Finish it — and see draft one next to draft three"]]},
+  feedback:{emoji:"💬",name:"The Feedback Circle",desc:"How to give feedback that helps and take feedback that stings.",long:"Feedback is where most creative teams break — or become great. Children bring work-in-progress and learn both sides of the circle: how to give feedback that actually helps (specific, kind, about the work), and how to receive it without crumbling or ignoring it. <strong>Watching their own work get better because of the group is the proof that sticks.</strong>",make:"Their own work, visibly improved by the circle",duration:"One course",curriculum:[["What Feedback Is For","Making the work better — not the maker smaller"],["Specific & Kind","\"I like it\" helps nobody; learn what does"],["Ask First","Find out what the maker needs before you advise"],["Receiving Without Crumbling","Take what helps, leave the rest — you're still the maker"],["The Improvement Round","Watch your own work get visibly better because of the circle"]]},
+  findingstory:{emoji:"🔎",name:"Finding the Story",desc:"Pick a real question — why is our street so noisy? — and research it properly.",long:"Every great investigation starts with a question worth asking. Children pick a real question from their own world — why is our street so noisy? where does school food come from? — and learn to research it properly: finding sources, checking facts, and separating what they know from what they assume. <strong>The result is a child who looks things up instead of making things up.</strong>",make:"A real investigation file on a question they chose",duration:"One course",curriculum:[["Questions Worth Asking","What makes a question good — and yours to answer"],["Where Answers Live","Sources: people, places, and pages — and which to trust"],["Fact vs Assumption","The habit of asking \"do I know this, or do I think this?\""],["Building the File","Collect, organise and connect what you found"],["The One-Minute Pitch","Tell the story of your findings — short, clear, yours"]]},
+  interview:{emoji:"🎤",name:"The Interview",desc:"Prepare questions, sit across from a real person, and draw out their story.",long:"There's a moment in every good interview where the prepared questions run out and real listening begins. Children prepare for a real guest, run the interview, and learn the craft's secret: <strong>the best interviewers talk least.</strong> They record it, and keep it — the recording itself often becomes a family treasure.",make:"A recorded interview with a real person",duration:"One course",curriculum:[["Research Your Guest","Know enough to ask questions no one else would"],["Writing Real Questions","Open questions that invite stories, not yes/no answers"],["The Art of Listening","Following the answer instead of your list"],["Follow-ups & Silence","The follow-up is the real question — and silence is a tool"],["Running the Interview","A real recorded conversation with a real person"]]},
+  metacognition:{emoji:"💭",name:"Meta-Cognition",desc:"Where do my ideas come from? Where do I get stuck? Kids map their own way of thinking.",long:"Some children think in pictures, some in words, some out loud. Most have never noticed which. In this course, kids solve puzzles and creative challenges while catching themselves in the act of thinking — then map how their own mind likes to work. <strong>Knowing how you think is the first step to thinking better</strong> — and it makes every other skill easier to learn.",make:"A personal \"how I think\" map",duration:"One course",curriculum:[["Catch Yourself Thinking","Fun challenges designed to make your own thinking visible"],["Pictures, Words or Motion?","Discover your thinking style — everyone has a different one"],["The Stuck Map","What actually happens (in your head) the moment you get stuck"],["Tricks That Unstick","Small moves that get a stuck brain going again"],["My Thinking Map","Draw a personal map of how your mind likes to work"]]},
+  screenwriting:{emoji:"✍️",name:"Screenwriting",desc:"From idea to structure to script — and the hardest part: choosing an ending and locking it.",long:"Everyone has story ideas. Writers are the ones who choose. Children take an idea through the screenwriter's craft — what the hero wants, what stands in the way, how it ends — and then do the bravest thing in writing: <strong>lock the ending.</strong> No takebacks, no \"maybe later\". A locked script is a decision made and owned, and that's the skill hiding inside the craft.",make:"A short script — finished and locked",duration:"One course",curriculum:[["What Does the Hero Want?","Every scene needs someone who wants something"],["Conflict Is the Engine","No obstacle, no story — build the wall your hero climbs"],["Show, Don't Tell","Let actions speak — the screenwriter's first commandment"],["Choosing the Ending","Endings aren't found, they're decided"],["Locking the Script","Commit. Sign it. Own it. No takebacks"]]},
+  shoes:{emoji:"👟",name:"Walk in Their Shoes",desc:"Interview a real person and design something for their need. Then find out: did it land?",long:"The hardest design brief in the world: make something for someone who isn't you. Children interview a real person — a grandparent, a younger kid, a neighbour — to understand their world, then design something for <strong>that person's need, not their own taste.</strong> The final test is beautifully simple: give it to them, and watch. Did it land?",make:"Something made for one real person — and tested on them",duration:"One course",curriculum:[["Meet Your Person","Choose a real person whose world isn't yours"],["Ask & Watch","Interview and observe — needs hide in the details"],["Map Their Need","Turn what you heard into one clear need"],["Design for Them","Make it for their need, not your taste"],["The Landing Test","Give it to them and watch: did it land?"]]},
+  sixhats:{emoji:"🎩",name:"Six Thinking Hats",desc:"One problem, six ways of looking at it — then a recorded panel debate.",long:"Based on a famous thinking method used in boardrooms worldwide — and it works brilliantly with kids. One question, six coloured \"hats\": what are the facts? how do we feel? what could go wrong? what could go right? what else could we try? Children debate a real question wearing one hat at a time, and record it as a panel. <strong>The lesson underneath: your first opinion is just one hat.</strong>",make:"A recorded panel debate",duration:"One course",curriculum:[["Meet the Six Hats","Six colours, six ways of thinking — and when to wear which"],["Facts vs Feelings","White hat and red hat: keeping them apart is a superpower"],["Risks & Bright Sides","Black hat and yellow hat: seeing danger and hope on purpose"],["The Green Hat","Fresh ideas on demand — creativity as a hat you can put on"],["The Recorded Panel","Debate a real question, one hat at a time, on the record"]]},
+  sounddesign:{emoji:"🎚️",name:"Sound Design & Mix",desc:"What should the audience feel — and how does sound make them feel it?",long:"Close your eyes during a film and you'll still feel everything — that's sound design. Children build a scene's soundscape from scratch: effects, atmosphere, music, silence. Every choice starts with one question: <strong>what should the audience feel right here?</strong> It's empathy with a mixing desk — designing an experience for someone else's ears.",make:"A complete soundscape for a scene",duration:"One course",curriculum:[["Sound Is Emotion","Pictures point at feelings — sound delivers them"],["Layers of a Soundscape","Effects, atmosphere, music: build the world in layers"],["Music & Mood","The same scene, three different songs, three different feelings"],["The Power of Silence","The loudest sound in film, used right"],["Mixing for the Listener","Balance everything for someone else's ears, not yours"]]},
+  soundonset:{emoji:"🎧",name:"Sound on Set",desc:"The invisible half of every film. Capture clean audio on a real shoot.",long:"Here's a film secret: audiences forgive a blurry image, but never bad sound. Children join a real shoot as the sound team — booms, levels, and the sacred hunt for silence (\"quiet on set!\"). It's the most invisible job on a crew and one of the most important, which is exactly the lesson: <strong>great teams run on people who make others look good.</strong>",make:"The complete soundtrack of a scene",duration:"One course",curriculum:[["Why Sound Comes First","The film secret: bad sound ruins good pictures"],["Mics & Booms","Which mic, where, and the boom operator's quiet ballet"],["Levels & Listening","Reading the meters — and trusting your ears more"],["Room Tone & Silence","Recording the quiet (yes, really) and why editors love you for it"],["The Scene's Soundtrack","Capture the complete audio of a live scene"]]},
+  storyboard:{emoji:"🖼️",name:"Storyboarding",desc:"Plan a film shot by shot before a single frame is filmed.",long:"A storyboard is a film you can hold: every shot drawn and decided before the camera comes out. Children board a scene frame by frame and discover the director's secret — <strong>most of the creative decisions happen on paper, in advance.</strong> It's planning, but the fun kind: the kind that makes the shoot day feel like magic instead of chaos.",make:"A complete shot-by-shot storyboard",duration:"One course",curriculum:[["Why Directors Draw First","The cheapest place to fix a film is on paper"],["One Frame, One Idea","Each panel makes exactly one decision"],["Shot Sizes & Angles","Wide, medium, close — choosing what the audience sees"],["The Flow Check","Read the board like a film: does it flow?"],["Boarding Your Scene","A complete storyboard, ready to shoot from"]]},
+  systems:{emoji:"🕸️",name:"Systems Thinking",desc:"Why does the schoolyard flood every autumn? Map how a real problem hangs together.",long:"Most problems aren't a broken piece — they're a tangled web. Children take a real, visible problem and draw the whole picture: what connects to what, what causes what, and where one small change ripples everywhere. Then they turn their map into a short explainer, because <strong>if you can explain a system simply, you truly understand it.</strong>",make:"A system map, turned into a short explainer",duration:"One course",curriculum:[["Pick a Real Problem","Choose something from your own world that bugs you"],["Draw the Connections","Map what links to what — the web behind the problem"],["Find the Loops","Spot the circles where problems feed themselves"],["The Smart Fix","Find the one place where a small change does the most"],["Explain It Simply","Turn your map into an explainer anyone can follow"]]},
+  truefake:{emoji:"🧐",name:"True or Fake?",desc:"Can you tell what's real online? Learn to check sources and spot manipulation.",long:"Children grow up in a flood of images, claims and clips — some true, many not. This course turns them from swimmers into lifeguards: how to check who's behind a claim, how to find something twice before trusting it, how pictures and edits can lie. They finish by making their own fact-check video. <strong>Healthy scepticism, learned by doing the checking themselves.</strong>",make:"Their own fact-check video",duration:"One course",curriculum:[["Who's Telling You?","Every message has a sender — find them first"],["Find It Twice","Never trust a claim you've only seen once"],["How Images Lie","Crops, edits and angles — the tricks pictures play"],["The Checklist","A pocket routine for checking anything, fast"],["Your Fact-Check Video","Pick a claim, check it properly, publish the verdict"]]},
+  voice:{emoji:"🎙️",name:"Voice & Narration",desc:"Breath, pace, warmth — find your natural speaking voice and record a real narration with it.",long:"Everyone has a voice they use and a voice they hide. This course finds the second one. Through breath, pace and play, children discover how their natural voice sounds when it's relaxed — then use it to record a real narration. It's a small shift with a big effect: <strong>a child who likes their own voice speaks up more, everywhere.</strong>",make:"A recorded narration of a real piece",duration:"One course",curriculum:[["Breath & Pace","Why slowing down makes you sound stronger, not smaller"],["Your Natural Voice","Finding the voice that's already yours — no imitation needed"],["Pauses & Emphasis","The words you don't say do half the talking"],["Reading for the Mic","How reading aloud for a listener differs from reading in class"],["Recording the Narration","A real recording session, headphones on, red light on"]]},
+  /* ── non-fiction book: full pipeline ── */
+  booktest:{emoji:"🧭",name:"Is There a Book in It?",desc:"Before you write anything: does this idea hold a whole book, or is it an article?",long:"Most abandoned books were never books. They were an interesting thought that ran out after twenty pages. This course is the test you run first — the one professional writers run before they commit a year — so you find out cheaply, on paper, instead of expensively, at chapter four.",make:"A one-page test of your idea",duration:"2 hours",curriculum:[["The one-sentence test","If you cannot say what the book argues in a single sentence, you do not have it yet."],["Who is waiting for this","The reader who needs it, described specifically enough that you could name three of them."],["What already exists","Finding the books that overlap yours, and working out what yours does that they do not."],["Article or book","How to tell the difference honestly, and why an article you actually finish beats a book you do not."]]},
+
+  research:{emoji:"🗂️",name:"The Research Trail",desc:"Where facts actually come from, and how to keep track of them so you can prove it later.",long:"Non-fiction lives or dies on its sources. This is the unglamorous skill underneath every good book: finding primary material, knowing which sources carry weight, and keeping notes in a way that still makes sense eighteen months later when an editor asks where a number came from.",make:"A working research system",duration:"2 hours",curriculum:[["Primary and secondary","The difference, why it matters, and how to get to the original instead of somebody's summary."],["Where things are kept","Archives, public records, papers, and the parts of the internet that are not a search engine."],["A note system that survives","Capturing sources so that every fact can be traced back without hunting."],["Knowing when to stop","Research is comfortable and writing is not. Recognising the point where more reading is avoidance."]]},
+
+  structure:{emoji:"🏗️",name:"Building the Spine",desc:"Turning a pile of research into a shape — chapters, order, and the argument running through.",long:"The gap between a folder of good material and a book is structure. This course is about the spine: what the reader learns in what order, why each chapter has to exist, and how to test the whole shape before writing a word of it.",make:"A chapter outline you can write from",duration:"2 hours",curriculum:[["The one thing you are arguing","Everything in the book either serves it or comes out."],["Chapters as questions","Giving every chapter one job, so you always know when it is finished."],["Order and momentum","Why the obvious order is often the wrong one, and what makes a reader continue."],["Testing it on paper","Reading the outline aloud to find the chapter that does not earn its place."]]},
+
+  firstdraft:{emoji:"✍️",name:"Getting the First Draft Down",desc:"The unglamorous middle. How working writers actually finish a manuscript.",long:"Nearly everyone can start. The first draft is where books die — not from lack of talent, but from having no method for the eleven months in the middle. This course is about the working habits that get words onto pages when the excitement has worn off.",make:"A drafting routine that fits your week",duration:"2 hours",curriculum:[["Writing badly on purpose","Why the first draft is allowed to be poor, and what happens when you forget that."],["Session length and streaks","Finding a rhythm you can hold for months rather than a fortnight."],["Where to stop each day","The professional trick of stopping mid-thought so tomorrow starts easily."],["Getting past the middle","The stretch where it feels worthless, and why that feeling is not information."]]},
+
+  polish:{emoji:"🔍",name:"Line by Line",desc:"Copyediting and proofreading your own work — catching what your brain fills in.",long:"After the structure is right and the argument holds, there is still the sentence-level pass most self-published books skip, which is exactly why they read as self-published. This course covers what a copyeditor does and how to approximate it on your own manuscript.",make:"A clean, consistent manuscript",duration:"2 hours",curriculum:[["Copyedit vs proofread","Two different jobs, done at two different times, for two different reasons."],["Reading what is there","Techniques for seeing the words on the page instead of the ones in your head."],["A style sheet","Deciding your spellings, capitals and conventions once and applying them everywhere."],["What to fix and what to leave","Voice is not error. Knowing the difference keeps the book yours."]]},
+
+  coverlayout:{emoji:"🎨",name:"Cover & Layout",desc:"What makes a book look like a book — inside and out.",long:"Readers judge instantly, and the judgement is mostly typographic. This course covers the cover as a piece of communication and the interior as a reading experience: margins, type size, running heads, and the small conventions that make pages feel professional.",make:"A cover concept and a page layout",duration:"2 hours",curriculum:[["What a cover has to do","Say the genre, the promise and the tone at thumbnail size."],["Typesetting the inside","Margins, leading, and why the defaults look wrong in print."],["The furniture","Title pages, contents, running heads, page numbers, notes and index."],["Print and screen","How the same book has to behave differently in each."]]},
+
+  publishing:{emoji:"🏛️",name:"Getting It Published",desc:"Agents, publishers, or doing it yourself — the honest trade-offs of each route.",long:"There is no longer one path, and each of them costs you something different. This course lays out what actually happens on each route, what a publisher does that you cannot, what you keep by going alone, and how the money genuinely works.",make:"A route chosen for real reasons",duration:"2 hours",curriculum:[["The proposal","What a non-fiction proposal contains, and why it is often written before the book."],["Agents and publishers","What they do, how they are paid, and what they can and cannot promise."],["Doing it yourself","The real costs, the real control, and the jobs you now own."],["Reading the numbers","Advances, royalties and rights, explained without the mystique."]]},
+
+  launch:{emoji:"📣",name:"Finding Its Readers",desc:"A book nobody hears about is a hobby. Getting it to the people it was written for.",long:"The work does not end at publication, and this is the part most first-time authors have no plan for. Not marketing tricks — the practical business of putting a finished book in front of the specific readers you identified before you started.",make:"A launch plan on one page",duration:"2 hours",curriculum:[["Back to the reader","The person you described in the first course is who you are now looking for."],["Where they already are","Finding existing gatherings rather than building an audience from nothing."],["Reviews and word of mouth","How books actually spread, and what you can honestly influence."],["The long tail","Why a non-fiction book sells for years, and what keeps it alive."]]},
+
+  /* ── ways of thinking: added methods ── */
+  designthinking:{emoji:"🛠️",name:"Design Thinking",desc:"A repeatable way to attack a problem when you do not yet know what the problem is.",long:"Design thinking is a sequence — understand, define, generate, prototype, test — that stops people from leaping to the first plausible solution. This course runs the whole loop on a real problem, so the steps become something you can actually use rather than a diagram you have seen on a slide.",make:"One problem taken through the full loop",duration:"2 hours",curriculum:[["The problem behind the problem","Why the first statement of a problem is almost always wrong."],["Generating badly, on purpose","Producing many poor ideas fast, because good ones do not arrive first."],["Prototyping in an hour","Making something rough enough to be criticised, cheap enough to throw away."],["Testing without defending","Watching someone use your idea and keeping your mouth shut."]]},
+
+  hcd:{emoji:"🧍",name:"Human-Centred Design",desc:"Building for how people behave, rather than how you wish they behaved.",long:"Most things fail because they were designed for a reasonable person who does not exist. This course is about observing real behaviour — what people actually do, under time pressure, while distracted — and designing for that instead of for the idealised user in your head.",make:"A design based on what people do",duration:"2 hours",curriculum:[["Watching instead of asking","Why people report their behaviour inaccurately, and what to do about it."],["The edges","Designing for the tired, rushed, and unfamiliar user rather than the ideal one."],["Assumptions on the table","Writing down what you believe about your user, then checking one of them."],["When people are the constraint","Solutions that are technically correct and behaviourally impossible."]]},
+
+  divcon:{emoji:"🔀",name:"Divergent & Convergent Thinking",desc:"Two opposite modes, and why doing both at once ruins each.",long:"Opening up and narrowing down are different mental jobs, and most bad meetings are the two happening simultaneously. This course drills them separately — first generating without judging, then deciding without wavering — and gives you a way to run the switch deliberately.",make:"A decision made in two clean halves",duration:"2 hours",curriculum:[["Diverging","Quantity before quality, and the rules that keep judgement out of the room."],["The switch","Naming the moment you stop generating, so nobody keeps adding ideas at the decision."],["Converging","Criteria set before options are ranked, so the loudest voice does not decide."],["Doing it alone","Running both modes solo, where there is nobody to enforce the switch."]]},
+
+  /* ── mental models ── */
+  firstprinciples:{emoji:"⚛️",name:"First Principles",desc:"Stripping a problem to what is definitely true, then rebuilding — including problems everyone assumes are solved.",long:"Most reasoning is done by analogy: this resembles that, so do what worked there. It is fast and mostly fine, until the situation is genuinely new. This course covers stripping a problem down to what you actually know to be true and reasoning back up from it.",make:"One belief taken apart and rebuilt",duration:"2 hours",curriculum:[["Analogy and its limits","Why copying what worked elsewhere fails exactly when it matters most."],["Getting to bedrock","Separating what is physically true from what is merely customary."],["Rebuilding","Constructing an answer from the parts, and noticing what you had assumed."],["The cost","This is slow. Knowing when it is worth the time is part of the skill."]]},
+
+  inversion:{emoji:"🔄",name:"Inversion",desc:"Instead of asking how to succeed, asking what would guarantee failure — then avoiding that.",long:"Some problems are much easier backwards. Inversion is the habit of turning a question over: not how do we make this work, but what would make this certainly fail. It surfaces risks that forward thinking politely skips.",make:"A plan tested from the wrong end",duration:"90 minutes",curriculum:[["Turning the question","How to state any goal as its opposite without it becoming pessimism."],["The pre-mortem","Assuming it has already failed, and writing the explanation."],["Avoiding stupidity","Why removing obvious errors beats pursuing brilliance in most fields."],["Where it misleads","Problems that genuinely do not invert, and how to spot them."]]},
+
+  secondorder:{emoji:"♟️",name:"Second-Order Thinking",desc:"And then what happens? The question almost nobody asks twice.",long:"Most decisions are judged on their immediate effect. Second-order thinking is the discipline of asking what happens after that, and after that — which is where most unintended consequences were sitting in plain view all along.",make:"A decision followed three steps out",duration:"90 minutes",curriculum:[["And then what","Following a consequence past the first move."],["Who responds","People adapt to your decision, which changes what your decision does."],["Delayed costs","Choices that look good this quarter and expensive in three years."],["Stopping","How far out to think before it becomes speculation."]]},
+
+  baserates:{emoji:"🎲",name:"Base Rates & Probability",desc:"How often does this normally happen? The question that beats most gut feelings.",long:"People reason from the vivid story in front of them and ignore how often the thing happens in general. This course covers base rates, rough probability and the specific ways intuition goes wrong — without requiring any mathematics beyond arithmetic.",make:"A gut feeling checked against the numbers",duration:"2 hours",curriculum:[["The outside view","Asking how this normally goes before asking about this particular case."],["Vivid beats likely","Why a memorable story overrides a boring statistic, every time."],["Rough numbers","Estimating well enough to make a decision, without pretending to precision."],["Updating","Changing your mind by degrees when new information arrives."]]},
+
+  incentives:{emoji:"🎯",name:"Incentives",desc:"Never ask what people believe. Ask what they are paid for.",long:"Behaviour that looks irrational usually makes perfect sense once you know how someone is measured. This course is about reading the incentives in a situation — in a company, a market, a family — and predicting behaviour from them rather than from stated intentions.",make:"An incentive map of a real situation",duration:"2 hours",curriculum:[["Follow the measurement","What gets counted gets done, whatever the mission statement says."],["Perverse outcomes","Well-meant targets that reliably produce the opposite result."],["Reading a room","Working out what each person is actually rewarded for."],["Designing them","Setting an incentive without creating the next problem."]]},
+
+  maps:{emoji:"🗺️",name:"The Map Is Not the Territory",desc:"Every model leaves things out. Knowing what yours leaves out is the skill.",long:"Models, plans, dashboards and frameworks are all simplifications, and useful precisely because they are. Trouble starts when the simplification gets mistaken for the thing. This course is about using models hard while remembering what they discarded.",make:"A model tested against reality",duration:"90 minutes",curriculum:[["Useful because incomplete","Why a model that included everything would be worthless."],["What got left out","Finding the discarded detail that turns out to matter."],["When the map fails","Signals that reality has stopped matching the model."],["Holding several","Using more than one model on the same problem, on purpose."]]},
+
+  astromodel:{emoji:"♒",name:"Astrology as a Mental Model",desc:"An old system that divides a whole — including the body — into twelve parts and names how they relate.",long:"Astrology is one of the oldest complete classification systems anyone built: twelve categories, applied to everything from the calendar to the body, with a defined set of relationships between them. This course looks at it as a mental model rather than a forecast — how the scheme is constructed, what it maps onto, and what a system like it is actually good for. It is direct about what the evidence does and does not support. What is left is a structure worth understanding on its own terms, and a useful exercise in borrowing from an inherited system without believing it literally.",make:"A working knowledge of the system, and its limits",duration:"2 hours",curriculum:[["Where it came from","Calendars, seasons and navigation — the practical origins underneath the symbolism."],["The scheme itself","Twelve divisions, four elements, three modes — and the fixed relationships between them: opposites, squares, and the axes that pair one division with another."],["Mapping one thing onto another","The correspondence habit at the heart of it — the same twelve divisions applied to the year, the day and the human body, so that every part has a place and a counterpart."],["What it cannot do","Why prediction claims do not survive testing, and how a description feels personal while applying to everyone."],["Borrowing without believing","Taking the useful structure from any inherited framework while leaving the claims behind."]]}
+,
+  fitlit:{status:"open",promise:"<strong>What this is not:</strong> not a diet, not a training programme and not medical advice. It sets no targets and asks you to count or weigh nothing.",emoji:"🫀",name:"Fitness Literacy",desc:"What the body is actually doing when it stores and releases fat — before anyone sells you a method.",long:"Most people trying to change their body have absorbed a hundred rules and never been given a model. This course builds the picture underneath: what fat is for, what changes when you move, eat, sleep or worry, and why none of those levers works on its own. There is no plan here, no targets and nothing to weigh or count. The point is understanding — because every decision you make afterwards is better made from a model than from a rule somebody handed you.",make:"A working picture of your own body",duration:"2 hours",curriculum:[["What the body does with energy","Storing and releasing it, and why the simple in-and-out ledger everyone pictures is not how the system behaves."],["Nothing works alone","Sleep, movement, appetite, stress and mood as a single loop, where pulling one lever moves three others."],["Where the rules came from","Tracing the familiar advice back to its source, and noticing how much of it is convention rather than finding."],["What actually holds up","The small number of things the evidence genuinely supports, stated plainly and without a product attached."],["What you can safely ignore","The numbers on packets, apps and machines — and why understanding the system means never needing to count any of them."]]},
+
+  nondual:{status:"open",emoji:"☯️",name:"Non-Dualism",desc:"Noticing that the divisions you are reasoning with were put there by people, not found in the world.",long:"Non-dualism is an old idea with a very practical edge: many of the boundaries we treat as real — mind and body, cause and effect, this part and that part — are conveniences of language rather than features of reality. This course uses it as a working tool. You take a problem, find the divisions hidden inside how you have stated it, and check which of them survive contact with the thing itself. Most do not, and the ones that fall over are usually where the problem was stuck.",make:"One problem restated without its false splits",duration:"2 hours",curriculum:[["Where the lines come from","Every field inherits its divisions from somebody. Finding out who drew yours, and why."],["Splits that do damage","Mind against body, willpower against biology, food against movement — divisions that make a connected problem unsolvable."],["Testing a division","A simple check: does anything change if you remove the line? If not, the line was doing no work."],["Thinking without the split","Restating a problem with the false boundary taken out, and seeing what becomes obvious."],["Where dividing is still right","The honest limit. Some distinctions are real and useful, and collapsing everything into oneness is its own error."]]}
+,
+  fishbone:{status:"open",emoji:"🐟",name:"The Fishbone Diagram",desc:"A method for laying out every cause of a problem, including all the ones that are not you.",long:"The fishbone came out of factory quality control, where blaming the operator was cheap and useless. It forces you to name every category of cause and follow each one outward until you reach something that can actually be changed. It is unglamorous and it works. Its real virtue is that it will not let you stop at the first cause you thought of, which is nearly always the one closest to hand and rarely the one doing the damage.",make:"One problem, fully mapped",duration:"2 hours",curriculum:[["State the effect, not the blame","Writing down the thing that keeps happening, rather than the person you have decided is responsible for it."],["The branches","People, method, environment, materials, measurement, machinery — the factory categories, and how to translate them to a problem that has nothing to do with a factory."],["Asking why until it stops","Working down each branch past the obvious answer. The useful causes are usually three or four questions in."],["Yours, influenced, endured","Sorting the finished diagram into causes you control, causes you can nudge, and causes you can only plan around."],["Choosing the branch","A full diagram is not a plan. Picking the one or two branches worth acting on is the part that decides whether any of it matters."]]}
+
+};
+
+/* Series: ordered collections. Courses inside a series appear only inside it. */
+const SERIES = {};   /* no bundles at this layer — these courses are unrelated on purpose */
+
+
+
+
+/* Standalone courses — belong to no series, shown on their own. */
+const SOLO = {
+  fitlit:         {who:'Adults', disc:'Health literacy'},
+  astromodel:     {who:'Adults', disc:'Classification systems'},
+  nondual:        {who:'Adults', disc:'Philosophy'},
+  firstprinciples:{who:'Adults', disc:'Reasoning'},
+  fishbone:       {who:'Adults', disc:'Root-cause analysis'}
+};
+const SOLOCOL={fitlit:'var(--tangerine)',astromodel:'var(--grape)',nondual:'var(--sky)',firstprinciples:'var(--leaf)',fishbone:'var(--raspberry)'};
+const STANDALONE = Object.keys(SOLO).map(id=>({
+  id:id, emoji:W[id].emoji, name:W[id].name,
+  who:SOLO[id].who, disc:SOLO[id].disc,
+  plain:SOLO[id].disc+'.', short:W[id].desc,
+  long:W[id].long, curriculum:W[id].curriculum,
+  make:W[id].make, duration:W[id].duration,
+  status:W[id].status||'wait', promise:W[id].promise
+}));
+
+
+
+/* ══════════ COVER ART ══════════
+   No image files. Each cover is drawn from the palette so it always matches.
+   To use a real photo later, add  img:'photos/engine.jpg'  to a course or
+   series object — the photo then replaces the generated pattern automatically. */
+const PATTERNS = [
+  c=>`repeating-linear-gradient(45deg, ${c} 0 14px, transparent 14px 28px)`,
+  c=>`radial-gradient(${c} 22%, transparent 23%) 0 0/26px 26px`,
+  c=>`repeating-linear-gradient(90deg, ${c} 0 6px, transparent 6px 22px)`,
+  c=>`radial-gradient(circle at 20% 80%, ${c} 0 34%, transparent 35%), radial-gradient(circle at 78% 26%, ${c} 0 22%, transparent 23%)`,
+  c=>`repeating-linear-gradient(-45deg, ${c} 0 10px, transparent 10px 30px)`,
+  c=>`conic-gradient(from 45deg at 50% 50%, ${c} 0 25%, transparent 0 50%, ${c} 0 75%, transparent 0) 0 0/40px 40px`
+];
+function coverHTML(emoji,color,seed,img,wide){
+  const cls = wide ? 'cover cover-wide' : 'cover';
+  if(img) return `<div class="${cls}" style="background-image:url('${img}');"></div>`;
+  const pat = PATTERNS[Math.abs(seed)%PATTERNS.length]('rgba(30,27,46,.20)');
+  return `<div class="${cls}" style="background:${color};">
+    <div class="cv-pattern" style="background:${pat};"></div>
+    <span class="cv-emoji">${emoji}</span>
+  </div>`;
+}
+function seedOf(s){let n=0;for(let i=0;i<s.length;i++)n=n*31+s.charCodeAt(i);return n;}
+
+/* ══════════ RENDER ══════════ */
+let view='all';
+
+function seriesOf(id){
+  const r=[];
+  for(const k in SERIES){
+    const i=SERIES[k].steps.findIndex(s=>s===id);
+    if(i>-1)r.push({key:k,step:i+1});
+  }
+  return r;
+}
+
+function renderSidebar(){
+  renderSteps('vault');
+  const cb=document.getElementById('collections-block');
+  if(cb) cb.style.display = Object.keys(SERIES).length ? 'block' : 'none';
+  let n=`<li><button class="${view==='all'?'on':''}" onclick="setView('all')">Everything <span class="n">${Object.keys(SERIES).length+STANDALONE.length}</span></button></li>`;
+  for(const k in SERIES){
+    n+=`<li><button class="${view===k?'on':''}" onclick="setView('${k}')"><i style="background:${SERIES[k].color};"></i>${SERIES[k].name} <span class="n">${SERIES[k].steps.length}</span></button></li>`;
+  }
+  if(STANDALONE.length){
+    n+=`<li><button class="${view==='solo'?'on':''}" onclick="setView('solo')"><i style="background:var(--sky);"></i>Others <span class="n">${STANDALONE.length}</span></button></li>`;
+  }
+  document.getElementById('filter-series').innerHTML=n;
+}
+function setView(v){
+  view=v;renderSidebar();
+  const qEl=document.getElementById('q');if(qEl)qEl.value='';
+  if(v==='all'||v==='solo')renderOverview();else renderSeries(v);
+}
+
+function show(which){
+  ['grid-view','series-view','detail-view'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.style.display = id===which?'block':'none';
+    if(id!==which) el.innerHTML='';   /* keeps form ids unique across views */
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderOverview(){
+  let html='';
+  if(view!=='solo' && Object.keys(SERIES).length){
+    html+='<span class="sec-label">Series — each one builds to something finished</span><div class="series-cards">';
+    for(const k in SERIES){
+      const s=SERIES[k];
+      html+=`<button class="s-card" style="--c:${s.color};" onclick="setView('${k}')">
+        ${coverHTML(s.emoji,s.color,seedOf(k),s.img)}
+        <h3>${s.name}</h3>
+        <p>${s.tag}</p>
+        <span class="s-meta">${s.steps.length} courses · ${s.who}</span>
+        <span class="s-go">Open the series →</span>
+      </button>`;
+    }
+    html+='</div>';
+  }
+  if(STANDALONE.length){
+  html+='<span class="sec-label">Five courses · no order, and no connection between them</span><div class="vault-grid">';
+  html+=STANDALONE.map(v=>`
+    <button class="v-card" style="--c:${SOLOCOL[v.id]||'var(--sky)'};" onclick="openSolo('${v.id}')" aria-label="Open ${v.name}">
+      ${coverHTML(v.emoji,SOLOCOL[v.id]||'var(--sky)',seedOf(v.id),v.img)}
+      <div class="v-top"><span class="tag">${v.who}</span></div>
+      <h3>${v.name}</h3>
+      <p class="v-plain">${v.plain}</p>
+      <p class="v-desc">${v.short}</p>
+      <span class="v-more">See the course →</span>
+    </button>`).join('');
+  html+='</div>';
+  }
+  document.getElementById('grid-view').innerHTML=html;
+  show('grid-view');
+}
+
+function renderSeries(k){
+  const s=SERIES[k];
+  let steps='';
+  s.steps.forEach((st,i)=>{
+    const num=String(i+1).padStart(2,'0');
+    if(typeof st==='object'){
+      steps+=`<div class="s-step coming"><span class="s-num">${num}</span>
+        <span><span class="s-name">${st.coming}<span class="pill-soon">In preparation</span></span></span></div>`;
+    }else{
+      const w=W[st];
+      steps+=`<button class="s-step" onclick="openCourse('${st}','${k}')"><span class="s-num">${num}</span>
+        <span><span class="s-name">${w.emoji} ${w.name}</span><span class="s-sub">${w.desc}</span></span></button>`;
+    }
+  });
+  document.getElementById('series-view').innerHTML=`
+    <button class="d-back" onclick="setView('all')">← All collections</button>
+    <div class="series-head" style="--c:${s.color};">
+      ${coverHTML(s.emoji,s.color,seedOf(k),s.img,true)}
+      <div class="series-head-top">
+        <div class="sh-row">
+          <div>
+            <h2>${s.name}</h2><p>${s.tag}</p>
+            <div class="d-top-cta">
+              <button class="btn-sm ink" onclick="jumpSignup()">Follow this series</button>
+              <button class="btn-sm" onclick="askAbout('${s.name.replace(/'/g,"\\'")}')">Ask a question</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="series-steps">${steps}</div>
+    </div>
+    ${waitlistBlock(s.name,'Hear as each course in this series is released. You can still take any single course in it on its own.')}`;
+  show('series-view');
+}
+
+function pricePill(k){
+  return PRICES[k] ? `<span class="su-price">${PRICES[k]}</span>` : '';
+}
+
+function waitlistBlock(title,note){
+  return `
+  <div class="signup" id="su-box">
+    <h4>Follow ${title}</h4>
+    <p class="su-note">${note}</p>
+    <div class="su-fields">
+      <input id="su-name" type="text" placeholder="Your name">
+      <input id="su-email" type="email" placeholder="Email address">
+    </div>
+    <button class="btn btn-ink" onclick="submitSignup('${title.replace(/'/g,"\\'")}','waitlist')">Keep me posted</button>
+    <p class="su-msg" id="su-msg"></p>
+  </div>
+  <div class="su-done" id="su-done"></div>`;
+}
+
+function signupBlock(o){
+  const open = o.status==='open';
+  return `
+  <div class="signup" id="su-box">
+    <h4>${open?'Get this course':'Tell me when it is out'}</h4>
+    <p class="su-note">${open
+      ? 'Yours to keep, watched at whatever pace suits you. The book is optional.'
+      : 'This one is still in production. Leave your details and you will hear the day it is released.'}</p>
+    ${open?`<div class="su-opts">
+      <label class="su-opt fixed">
+        <input type="checkbox" checked disabled>
+        <span><span class="su-label">The course ${pricePill('course')}</span>
+        <span class="su-desc">Every lesson, online and self-paced, with the thing you build alongside it. No expiry.</span></span>
+      </label>
+      <label class="su-opt">
+        <input type="checkbox" id="su-book">
+        <span><span class="su-label">Add the book ${pricePill('book')}</span>
+        <span class="su-desc">A book written on the same subject, for going further than a course can take you.</span></span>
+      </label>
+    </div>`:''}
+    <div class="su-fields">
+      <input id="su-name" type="text" placeholder="Your name">
+      <input id="su-email" type="email" placeholder="Email address">
+    </div>
+    <button class="btn btn-ink" onclick="submitSignup('${o.name.replace(/'/g,"\\'")}','${open?'signup':'waitlist'}')">${open?'Get the course':'Notify me'}</button>
+    <p class="su-msg" id="su-msg"></p>
+  </div>
+  <div class="su-done" id="su-done"></div>`;
+}
+
+function submitSignup(course,kind){
+  const name=document.getElementById('su-name').value.trim();
+  const email=document.getElementById('su-email').value.trim();
+  const msg=document.getElementById('su-msg');
+  msg.style.display='block';msg.style.color='var(--raspberry)';
+  if(!name||!email){msg.textContent='Please add your name and email.';return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.textContent='That email address does not look right.';return;}
+  const bEl=document.getElementById('su-book');
+  const book=bEl?bEl.checked:false;
+  const payload={course:course,kind:kind,name:name,email:email,
+                 book:book?'yes':'no',
+                 sentAt:new Date().toISOString()};
+  const finish=()=>{
+    document.getElementById('su-box').style.display='none';
+    const d=document.getElementById('su-done');
+    d.style.display='block';
+    d.innerHTML=`<strong>${kind==='signup'?'You are signed up.':'You are on the list.'}</strong>
+      ${kind==='signup'
+        ? 'Access details and payment instructions are on their way by email.'
+        : 'You will hear the day this one is released.'}`;
+  };
+  msg.style.color='var(--ink-soft)';msg.textContent='Sending…';
+
+  const body=new URLSearchParams({'form-name':'signup', ...payload}).toString();
+  fetch('/',{method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:body})
+   .then(r=>{ if(!r.ok) throw new Error(r.status); finish(); })
+   .catch(()=>{
+     /* not on Netlify yet (or offline) — fall back to email so nothing is lost */
+     const lines=Object.entries(payload).map(([k,v])=>k+': '+v).join('%0D%0A');
+     window.location.href='mailto:'+CONTACT+'?subject='+encodeURIComponent(kind+' — '+course)+'&body='+lines;
+     finish();
+   });
+}
+
+function detailHTML(o,backLabel,backFn,extra){
+  const open = o.status==='open';
+  return `
+    <button class="d-back" onclick="${backFn}">← ${backLabel}</button>
+    <div class="detail-panel" style="--dc:${o.color};">
+      ${coverHTML(o.emoji,o.color,seedOf(o.name),o.img,true)}
+      <div class="detail-head">
+        <div class="dh-row">
+          <div>
+            <h2>${o.name}</h2>
+            <div class="d-plain">${o.plain}</div>
+            <div class="dh-tags">
+              <span class="badge" style="background:${open?'var(--leaf)':'rgba(255,255,255,.7)'};">${open?'Available now':'In production'}</span>
+              <span class="tag" style="background:var(--paper);">${o.who}</span>
+            </div>
+            <div class="d-top-cta">
+              <button class="btn-sm ink" onclick="jumpSignup()">${open?'Get the course':'Notify me'}</button>
+              <button class="btn-sm" onclick="askAbout('${o.name.replace(/'/g,"\\'")}')">Ask a question</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-body">
+        ${extra||''}
+        <p class="d-desc">${o.long}</p>
+        <div class="d-h4">What we cover</div>
+        <p class="d-sub">A handful of things, chosen because between them they hold up most of the subject.</p>
+        <div class="curr">
+          ${o.curriculum.map((c,i)=>`
+            <div class="curr-item">
+              <span class="curr-num">${String(i+1).padStart(2,'0')}</span>
+              <div><strong>${c[0]}</strong><span>${c[1]}</span></div>
+            </div>`).join('')}
+        </div>
+        <div class="meta-strip">
+          <div class="meta-item"><label>Format</label><span>Online · self-paced</span></div>
+          <div class="meta-item"><label>Length</label><span>${o.duration}</span></div>
+          <div class="meta-item"><label>You end up with</label><span>${o.make}</span></div>
+          <div class="meta-item"><label>Who it's for</label><span>${o.who}</span></div>
+        </div>
+        ${o.promise?`<div class="d-promise">${o.promise}</div>`:''}
+        ${signupBlock(o)}
+      </div>
+    </div>`;
+}
+
+function jumpSignup(){
+  const el=document.getElementById('su-box');
+  if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function openCourse(id,fromKey){
+  const w=W[id];if(!w)return;
+  const also=seriesOf(id).filter(x=>x.key!==fromKey);
+  let extra='';
+  if(also.length){
+    extra=`<div class="d-series">Also part of:
+      ${also.map(x=>`<button onclick="setView('${x.key}')">${SERIES[x.key].name}</button>`).join('')}
+      <span style="flex-basis:100%;">The same course earning its place in two different collections is the point, not an accident.</span>
+    </div>`;
+  }
+  document.getElementById('detail-view').innerHTML=detailHTML({
+    emoji:w.emoji,name:w.name,plain:w.desc,long:w.long,curriculum:w.curriculum,
+    make:w.make,duration:w.duration,who:SERIES[fromKey].who,color:SERIES[fromKey].color,img:w.img,
+    status:(w.status||'wait')
+  },SERIES[fromKey].name,`setView('${fromKey}')`,extra);
+  show('detail-view');
+}
+
+function openSolo(id){
+  const v=STANDALONE.find(x=>x.id===id);if(!v)return;
+  document.getElementById('detail-view').innerHTML=detailHTML({
+    emoji:v.emoji,name:v.name,plain:v.plain,long:v.long,curriculum:v.curriculum,
+    make:v.make,duration:v.duration,who:v.who,color:SOLOCOL[v.id]||'var(--sky)',img:v.img,
+    status:v.status, promise:v.promise
+  },'All courses',"setView('all')");
+  show('detail-view');
+}
+
+function doSearch(){
+  const q=document.getElementById('q').value.trim().toLowerCase();
+  if(!q){setView('all');return;}
+  const hits=[];
+  for(const k in SERIES){
+    SERIES[k].steps.forEach(st=>{
+      if(typeof st!=='object'){
+        const w=W[st];
+        if((w.name+' '+w.desc).toLowerCase().includes(q) && !hits.some(x=>x.id===st))
+          hits.push({id:st,key:k,w:w});
+      }
+    });
+  }
+  const solo=STANDALONE.filter(v=>(v.name+' '+v.plain+' '+v.short).toLowerCase().includes(q));
+  let html='<span class="sec-label">Search results</span>';
+  if(!hits.length&&!solo.length){
+    html+='<div class="v-empty"><strong>Nothing matches that yet.</strong><br>Try a different word, or browse the collections.</div>';
+  }else{
+    html+='<div class="vault-grid">';
+    html+=hits.map(x=>`
+      <button class="v-card" style="--c:${SERIES[x.key].color};" onclick="openCourse('${x.id}','${x.key}')">
+        ${coverHTML(x.w.emoji,SERIES[x.key].color,seedOf(x.id),x.w.img)}
+        <div class="v-top"><span class="tag">${SERIES[x.key].name}</span></div>
+        <h3 style="font-size:1.1rem;">${x.w.name}</h3>
+        <p class="v-desc">${x.w.desc}</p>
+        <span class="v-more">See the course →</span>
+      </button>`).join('');
+    html+=solo.map(v=>`
+      <button class="v-card" style="--c:var(--sky);" onclick="openSolo('${v.id}')">
+        ${coverHTML(v.emoji,'var(--sky)',seedOf(v.id),v.img)}
+        <div class="v-top"><span class="tag">Standalone</span></div>
+        <h3 style="font-size:1.1rem;">${v.name}</h3>
+        <p class="v-desc">${v.short}</p>
+        <span class="v-more">See the course →</span>
+      </button>`).join('');
+    html+='</div>';
+  }
+  document.getElementById('grid-view').innerHTML=html;
+  show('grid-view');
+}
+
+function backToGrid(){ if(view==='all'||view==='solo')renderOverview(); }
+
+/* ══════════ CONTACT ══════════ */
+function askAbout(subject){
+  showPage('contact');
+  const t=document.getElementById('cf-topic');
+  t.value='A specific course';
+  const m=document.getElementById('cf-message');
+  if(!m.value.trim()) m.value='About '+subject+': ';
+  setTimeout(()=>{m.focus();m.setSelectionRange(m.value.length,m.value.length);},300);
+}
+
+function submitContact(){
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const topic=document.getElementById('cf-topic').value;
+  const message=document.getElementById('cf-message').value.trim();
+  const msg=document.getElementById('cf-msg');
+  msg.style.display='block';msg.style.color='var(--raspberry)';
+  if(!name||!email){msg.textContent='Please add your name and email.';return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){msg.textContent='That email address does not look right.';return;}
+  if(!message){msg.textContent='Please write a message.';return;}
+  msg.style.color='var(--ink-soft)';msg.textContent='Sending…';
+
+  const payload={name:name,email:email,topic:topic,message:message,sentAt:new Date().toISOString()};
+  const finish=()=>{
+    document.getElementById('cform').style.display='none';
+    document.getElementById('cf-done').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  fetch('/',{method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:new URLSearchParams({'form-name':'contact', ...payload}).toString()})
+   .then(r=>{ if(!r.ok) throw new Error(r.status); finish(); })
+   .catch(()=>{
+     const body=('From: '+name+'%0D%0A'+topic+'%0D%0A%0D%0A'+message).replace(/\n/g,'%0D%0A');
+     window.location.href='mailto:'+CONTACT+'?subject='+encodeURIComponent(topic)+'&body='+body;
+     finish();
+   });
+}
+
+/* ══════════ LAYER PRODUCTS ══════════
+   Add objects to these arrays; the grids, sidebars and detail pages rebuild. */
+const LAYERS = {
+  connect:{
+    label:'Connections', color:'var(--sun)',
+    items:[{
+      id:'divide', name:'Divide, Then Undivide', emoji:'☯️', who:'Adults',
+      status:'wait', duration:'90 minutes',
+      plain:'Astrology as a Mental Model × Non-Dualism.',
+      short:'One system cuts the body into twelve. The other says every cut like that was made by a person.',
+      builtOn:[["♒ Astrology as a Mental Model","goSolo('astromodel')"],
+               ["☯️ Non-Dualism","goSolo('nondual')"]],
+      long:"Put these two in a room and they should fight. One divides a whole body into twelve named parts and tells you what belongs where. The other says that every division like that was drawn by a human being for convenience, and that treating it as real is where the thinking goes wrong. Held together they produce something neither gives you alone: a way to use a map hard, while never once forgetting it is a map. That turns out to be the most useful thing you can learn about any inherited system.",
+      curriculum:[
+        ['Two opposite instincts','One system exists to divide. The other exists to question dividing. Start by taking both seriously.'],
+        ['What twelve parts buys you','A division gives you names, places and a way to talk about a body. That is not nothing.'],
+        ['What it costs you','The moment the parts feel real, the connections between them become invisible. This is the failure mode of every specialist map.'],
+        ['The relationships, not the parts','In the old scheme the interesting content was never the twelve boxes — it was the axes between them. Non-dualism explains why.'],
+        ['Using a map you do not believe','The skill this whole layer exists for: taking what a framework notices while refusing what it claims.']
+      ],
+      make:'A way to use any division without being trapped by it',
+      promise:"<strong>What this is not:</strong> neither a claim that the old scheme is medically true, nor a claim that all distinctions are illusions. Both of those are easy positions. The work is in between."
+    },{
+      id:'outside', name:'Everything Except You', emoji:'🐟', who:'Adults',
+      status:'wait', duration:'2 hours',
+      plain:'The Fishbone Diagram × Fitness Literacy.',
+      short:'Your body is not the only thing acting on your body.',
+      builtOn:[["🐟 The Fishbone Diagram","goSolo('fishbone')"],
+               ["🫀 Fitness Literacy","goSolo('fitlit')"]],
+      long:"Fitness literacy explains what is happening inside. It has nothing whatsoever to say about a commute, a shift pattern, whose turn it is to cook, an open-plan office, a winter, or the people you eat with every day. This connection puts a fitness goal at the head of a fishbone and works outward until the diagram fills up with things that are neither your metabolism nor your willpower. For most people, that is where the outcome was being decided all along — which is also why advice aimed purely at the inside of the body keeps failing them.",
+      curriculum:[
+        ['State the effect honestly','The thing that actually keeps happening, written without a villain in the sentence.'],
+        ['Translate the branches','Turning factory categories into the ones that apply to a life: the people around you, the space you live in, the shape of your week, what gets measured, what is available.'],
+        ['Follow each branch out','From "I eat badly on Thursdays" to the meeting that ends at eight. The cause worth knowing is several questions past the first one.'],
+        ['Inside against outside','Laying the physiological picture next to the external one, and counting the entries on each side. The result surprises most people.'],
+        ['The one or two worth changing','A full diagram is not a plan. Choosing which branches to act on, and which to stop fighting.']
+      ],
+      make:'A full map of what is acting on your goal',
+      promise:"<strong>Not an excuse machine.</strong> A diagram full of external causes can be used to conclude that nothing is your fault and nothing can be done. That is the failure mode of this tool and the course says so directly: the branches that matter are the ones you can actually reach."
+    },{
+      id:'bedrock', name:'Down to What Is True', emoji:'⛏️', who:'Adults',
+      status:'wait', duration:'2 hours',
+      plain:'Astrology as a Mental Model × Non-Dualism × First Principles.',
+      short:'List everything you believe about body fat. Then find out how little of it you actually know.',
+      builtOn:[["♒ Astrology as a Mental Model","goSolo('astromodel')"],
+               ["☯️ Non-Dualism","goSolo('nondual')"],
+               ["⚛️ First Principles","goSolo('firstprinciples')"],
+               ["☯️ Divide, Then Undivide","openLayer('connect','divide')"]],
+      long:"Three tools, one at a time, on the same pile of beliefs. The old map is used to enumerate — to force you to account for the whole body rather than the two or three parts you were already thinking about. Non-dualism is used to find the divisions inside your beliefs that were never real to begin with. First principles is used last, to strip whatever survives down to the few things you could actually defend. What is left is usually very small, and considerably more useful than what you started with.",
+      curriculum:[
+        ['Everything you believe, written down','Every rule you have absorbed about body fat, listed without filtering. It will be longer than you expect.'],
+        ['Which are inherited divisions','Sorting the list for splits that came from language rather than from bodies.'],
+        ['Which are actually true','Taking what survives down to what you could defend to someone who disagreed with you.'],
+        ['Rebuilding from the few','Constructing an account from the parts that held, and noticing how different it looks from the one you had.'],
+        ['The questions nobody asks','What becomes obvious once the inherited answers are gone — including why people were lean for most of history without measuring anything.']
+      ],
+      make:'A short list of things you can actually defend',
+      promise:"<strong>Honest about the ceiling:</strong> this will not hand you a cure for a problem that has defeated a large and well-funded industry. What it does is remove the beliefs that were never true, which is where most people's thinking has been stuck for years."
+    }]
+  },
+  judge:{
+    label:'Judgement', color:'var(--leaf)',
+    items:[{
+      id:'ownmodel', name:'Your Own Model, Tested', emoji:'🧪', who:'Adults',
+      status:'wait', duration:'2 hours, plus a few weeks',
+      plain:'All five skills, put together and then put in front of reality.',
+      short:'Build your own account of what is really going on — then find out which parts of it were wrong.',
+      builtOn:[["🫀 Fitness Literacy","goSolo('fitlit')"],
+               ["♒ Astrology as a Mental Model","goSolo('astromodel')"],
+               ["☯️ Non-Dualism","goSolo('nondual')"],
+               ["⚛️ First Principles","goSolo('firstprinciples')"],
+               ["🐟 The Fishbone Diagram","goSolo('fishbone')"],
+               ["⛏️ Down to What Is True","openLayer('connect','bedrock')"],
+               ["🐟 Everything Except You","openLayer('connect','outside')"]],
+      long:"This is the end of it and the point of all of it. You write your own account of what is actually going on — the inside of the body from physiology, checked for false divisions, stripped to first principles, laid out across the whole body rather than the parts you happen to think about, and set inside the external causes that the fishbone turned up. Then you live by it for a few weeks and find out which parts of it were right. Not whether it worked, which is too vague to answer. Which specific claims held, which failed, and which were phrased so loosely that they could never have failed.",
+      curriculum:[
+        ['Write the model','Your account of what is going on, on one page, in your own words rather than borrowed ones — the body and the things acting on it, not one without the other.'],
+        ['Make it falsifiable','Turning each belief into something that could turn out to be wrong. Anything that cannot fail is not yet a claim.'],
+        ['Live by it','A few weeks of ordinary life run on your own model. No targets, no tracking, no weighing — just behaving as though your account were true.'],
+        ['What held and what did not','Reading the evidence honestly, including the parts you would rather not have found.'],
+        ['Keep, cut, carry over','Revising the model — then running the same test on an inherited belief in a completely different part of your life. That transfer is the actual skill.']
+      ],
+      make:'A model of your own body that has survived contact with it',
+      promise:"<strong>Where the line is.</strong> This is not medical advice, not a diet and not a training programme. It sets no targets, asks you to count nothing and to weigh nothing. If you have a health condition, take medication, or have a difficult relationship with food or your body, this is a conversation for a doctor or a registered dietitian first — a framework is no substitute for either."
+    }]
+  }
+};
+
+const ROOMCOL={Kids:'var(--tangerine)',Adults:'var(--sky)',Anyone:'var(--leaf)'};
+const STEPS=[['vault','01','Build Skills'],['connect','02','Build Connections'],['judge','03','Build Judgement']];
+
+function goCourse(id,series){ showPage('vault'); setView(series); openCourse(id,series); }
+function goSolo(id){ showPage('vault'); openSolo(id); }
+
+function renderSteps(current){
+  const el=document.getElementById('steps-'+current);
+  if(!el)return;
+  el.innerHTML = STEPS.map(([pg,n,t])=>
+    `<li><button class="${pg===current?'on':''}" onclick="showPage('${pg}')">
+      <span class="n" style="margin:0 6px 0 0;opacity:1;">${n}</span>${t}</button></li>`).join('');
+}
+
+function renderLayer(kind){
+  const L=LAYERS[kind];
+  renderSteps(kind);
+
+  const counts={}; L.items.forEach(i=>counts[i.who]=(counts[i.who]||0)+1);
+  let w=`<li><button class="on">All rooms <span class="n">${L.items.length}</span></button></li>`;
+  for(const k in counts){
+    w+=`<li><button><i style="background:${ROOMCOL[k]||'var(--sky)'};"></i>${k} <span class="n">${counts[k]}</span></button></li>`;
+  }
+  document.getElementById('who-'+kind).innerHTML=w;
+
+  document.getElementById('grid-'+kind).innerHTML =
+    '<div class="vault-grid">' + L.items.map(v=>`
+      <button class="v-card" style="--c:${L.color};" onclick="openLayer('${kind}','${v.id}')" aria-label="Open ${v.name}">
+        ${coverHTML(v.emoji,L.color,seedOf(v.id),v.img)}
+        <div class="v-top"><span class="tag">${v.who}</span></div>
+        <h3>${v.name}</h3>
+        <p class="v-plain">${v.plain}</p>
+        <p class="v-desc">${v.short}</p>
+        <span class="v-more">See it →</span>
+      </button>`).join('') + '</div>';
+
+  document.getElementById('grid-'+kind).style.display='block';
+  const d=document.getElementById('detail-'+kind);
+  d.style.display='none'; d.innerHTML='';
+}
+
+function openLayer(kind,id){
+  const L=LAYERS[kind];
+  const v=L.items.find(x=>x.id===id); if(!v)return;
+  showPage(kind, true);
+  const combo=`<div class="d-series">Built on
+    ${v.builtOn.map(([t,fn])=>`<button onclick="${fn}">${t}</button>`).join('')}
+  </div>`;
+  document.getElementById('detail-'+kind).innerHTML = detailHTML({
+    emoji:v.emoji,name:v.name,plain:v.plain,long:v.long,curriculum:v.curriculum,
+    make:v.make,duration:v.duration,who:v.who,color:L.color,
+    status:v.status,promise:v.promise
+  }, L.label, `renderLayer('${kind}')`, combo);
+  document.getElementById('grid-'+kind).style.display='none';
+  document.getElementById('detail-'+kind).style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showPage(id,keep){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('on'));
+  const n=document.getElementById('nav-'+id);if(n)n.classList.add('on');
+
+  /* Only one detail panel may exist at a time: the sign-up forms share element
+     ids, so a leftover panel on a hidden page would break the visible one. */
+  if(id==='vault'){
+    if(view==='all'||view==='solo') renderOverview(); else renderSeries(view);
+  }else{
+    ['grid-view','series-view','detail-view'].forEach(x=>{
+      const el=document.getElementById(x);
+      if(el){el.innerHTML='';el.style.display='none';}
+    });
+  }
+  ['connect','judge'].forEach(k=>{ if(!(keep&&k===id)) renderLayer(k); });
+
+  if(!keep) window.scrollTo({top:0,behavior:'smooth'});
+}
+
+
+renderSteps('vault');renderSidebar();renderOverview();renderLayer('connect');renderLayer('judge');
+</script>
+</body>
+</html>

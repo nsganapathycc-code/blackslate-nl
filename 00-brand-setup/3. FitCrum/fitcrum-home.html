@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fitcrum — Home (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --deep:#0F2A26; --deep-2:#173A34; --deep-3:#24504A;
+  --light:#F4F6F3; --paper:#FFFFFF; --ink:#11201D; --muted:#566360; --line:#DCE2DE;
+  --coral:#FF6B3D; --mint:#9ED9C3; --sand:#EAD9B8; --sky:#BFD7F2;
+  --on-deep:#EAF2EE; --on-deep-muted:#A5BDB6;
+  --display:"Archivo", "Arial Narrow", system-ui, sans-serif;
+  --sans:"Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --max:1180px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--light);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);font-weight:850;font-stretch:72%;line-height:.95;margin:0;letter-spacing:-.01em;text-transform:uppercase}
+h1{font-size:clamp(52px,8vw,104px)}
+h2{font-size:clamp(38px,5vw,62px)}
+h3{font-size:30px}
+p{margin:0}
+.lede{font-size:19px;color:var(--muted);max-width:52ch}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:6px;font-weight:700;font-size:15px;text-decoration:none;border:2px solid currentColor;cursor:pointer;background:none;font-family:var(--sans);transition:background .2s,color .2s}
+.btn.solid{background:var(--coral);border-color:var(--coral);color:#1A0E08}
+.btn.solid:hover{background:#FF845C;border-color:#FF845C}
+.btn.ghost:hover{background:rgba(127,127,127,.12)}
+.section{padding:110px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+.section-head p{max-width:46ch;color:var(--muted)}
+.deep{background:var(--deep);color:var(--on-deep)}
+.deep .lede,.deep .section-head p{color:var(--on-deep-muted)}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
+
+/* header */
+.top-banner{background:var(--deep);color:var(--on-deep-muted);font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--light) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:900;font-stretch:80%;font-size:28px;text-decoration:none;text-transform:uppercase;letter-spacing:.01em}
+.logo-mark{width:30px;height:30px}
+nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:15px;font-weight:600}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover,nav a[aria-current]{color:var(--ink)}
+.menu-btn{display:none;background:none;border:0;font:inherit;font-weight:700;color:var(--ink);cursor:pointer}
+@media (max-width:820px){
+  nav{display:none}
+  nav.open{display:block;position:absolute;top:72px;left:0;right:0;background:var(--light);border-bottom:1px solid var(--line)}
+  nav.open ul{flex-direction:column;gap:0;padding:8px 24px 18px}
+  nav.open li a{display:block;padding:12px 0;border-bottom:1px solid var(--line)}
+  .menu-btn{display:block}
+  .hide-sm{display:none}
+}
+
+/* hero */
+.hero{padding:72px 0 96px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero p.lede{margin:26px 0 34px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-visual{position:relative}
+.panel{border-radius:16px;background:var(--deep);overflow:hidden}
+.panel svg{width:100%;height:auto}
+.offer-cards{position:absolute;left:-28px;bottom:-34px;display:flex;gap:12px}
+.offer{background:var(--paper);color:var(--ink);border-radius:10px;padding:14px 16px;width:180px;border:1px solid var(--line);border-top:4px solid var(--coral);box-shadow:0 16px 30px -18px rgba(15,42,38,.6)}
+.offer:nth-child(2){border-top-color:var(--mint)}
+.offer small{display:block;color:var(--muted);font-size:12px}
+.offer strong{display:block;font-size:15px;margin:2px 0 6px;line-height:1.3}
+.offer span{font-size:13px;font-weight:800}
+@media (max-width:920px){
+  .hero .wrap{grid-template-columns:1fr}
+  .offer-cards{position:static;margin-top:16px}
+  .offer{flex:1;width:auto}
+}
+
+/* method */
+.method-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.steps{margin-top:34px;display:grid;gap:26px}
+.step{display:grid;grid-template-columns:52px 1fr;gap:14px}
+.step b{font-family:var(--display);font-weight:900;font-stretch:72%;font-size:44px;line-height:.9;color:var(--coral)}
+.step h3{font-family:var(--sans);font-size:17px;font-weight:700;text-transform:none;letter-spacing:0;margin-bottom:4px;line-height:1.3}
+.step p{color:var(--on-deep-muted);font-size:16px}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mosaic figure{margin:0;border-radius:12px;overflow:hidden;background:var(--deep-2)}
+.mosaic figure:nth-child(1){grid-row:span 2}
+.mosaic figcaption{font-weight:600;font-size:14px;color:var(--on-deep-muted);padding:0 16px 14px}
+@media (max-width:920px){.method-grid{grid-template-columns:1fr;gap:44px}}
+
+/* explore */
+.explore{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.ex{padding:34px 30px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:12px;min-height:260px;background:var(--paper)}
+.ex .num{font-size:13px;color:var(--muted);font-weight:700}
+.ex .ico{width:42px;height:42px;color:var(--deep-3)}
+.ex h3{font-size:34px}
+.ex p{color:var(--muted);font-size:15.5px;flex:1}
+.ex a{font-weight:700;font-size:15px;text-underline-offset:4px;text-decoration-color:var(--coral)}
+@media (max-width:900px){.explore{grid-template-columns:1fr 1fr}}
+@media (max-width:580px){.explore{grid-template-columns:1fr}}
+
+/* band */
+.band .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.band .lede{margin-top:20px}
+.band ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px}
+.band li{padding-left:28px;position:relative;color:var(--muted)}
+.band li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:14px;border-radius:50%;border:3px solid var(--coral)}
+@media (max-width:900px){.band .wrap{grid-template-columns:1fr}}
+
+/* courses + services */
+.cols{display:grid;grid-template-columns:1fr 1.6fr;gap:56px}
+.course{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.course .thumb{border-radius:8px;overflow:hidden}
+.course h3{font-size:26px}
+.course small{color:var(--muted)}
+.pill{display:inline-block;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--mint) 55%,transparent);margin-top:6px}
+.svc{display:grid;grid-template-columns:1fr auto auto;gap:22px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.svc h3{font-family:var(--sans);font-size:17px;font-weight:700;text-transform:none;letter-spacing:0;line-height:1.3}
+.svc p{color:var(--muted);font-size:14.5px}
+.svc .meta{font-size:14px;color:var(--muted);text-align:right;white-space:nowrap}
+.svc .price{font-family:var(--display);font-weight:850;font-stretch:72%;font-size:34px;white-space:nowrap;text-align:right;line-height:1}
+.svc .price s{font-size:20px;font-weight:500;color:var(--muted);margin-right:6px}
+.svc .btn{padding:9px 16px;font-size:14px}
+.list-title{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+@media (max-width:900px){.cols{grid-template-columns:1fr}.svc{grid-template-columns:1fr auto}.svc .btn{grid-column:1/-1;justify-self:start}}
+
+/* products */
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 20px}
+.prod .pic{aspect-ratio:4/5;border-radius:12px;display:grid;place-items:center;position:relative;overflow:hidden}
+.prod .pic svg{width:58%}
+.tag{position:absolute;top:12px;left:12px;background:var(--paper);color:var(--ink);font-size:12px;font-weight:800;padding:4px 10px;border-radius:4px}
+.prod h3{font-family:var(--sans);font-size:15.5px;font-weight:600;text-transform:none;letter-spacing:0;line-height:1.35;margin:12px 0 2px}
+.prod .p{font-size:15px;color:var(--muted)}
+.prod .p s{margin-right:6px}
+.prod button{margin-top:10px;width:100%;justify-content:center;padding:10px}
+@media (max-width:900px){.products{grid-template-columns:repeat(2,1fr)}}
+
+/* about */
+.editorial .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+.editorial .cols2{display:grid;grid-template-columns:1fr 1fr;gap:22px 32px;margin-top:30px}
+.editorial .cols2 p{color:var(--muted);font-size:16px}
+.editorial .cols2 strong{display:block;color:var(--ink);margin-bottom:4px}
+@media (max-width:900px){.editorial .wrap{grid-template-columns:1fr}.editorial .cols2{grid-template-columns:1fr}}
+
+/* twin CTA */
+.twin{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cta-card{border-radius:16px;padding:46px 40px;display:flex;flex-direction:column;gap:16px;min-height:300px;position:relative;overflow:hidden}
+.cta-card p{max-width:40ch}
+.cta-card .btn{align-self:start;margin-top:auto}
+.cta-a{background:var(--deep);color:var(--on-deep)}
+.cta-a p{color:var(--on-deep-muted)}
+.cta-b{background:var(--mint);color:var(--ink)}
+.cta-card .deco{position:absolute;right:-10px;bottom:-10px;width:220px;pointer-events:none}
+@media (max-width:820px){.twin{grid-template-columns:1fr}}
+
+/* signup */
+.signup{text-align:center}
+.signup h2{max-width:18ch;margin:0 auto}
+.signup form{margin:34px auto 0;max-width:620px;display:grid;grid-template-columns:1fr 1fr auto;gap:10px}
+.signup input[type=text],.signup input[type=email]{padding:14px 18px;border-radius:6px;border:2px solid var(--deep-3);background:var(--deep-2);color:var(--on-deep);font:inherit;font-size:15px}
+.signup input::placeholder{color:var(--on-deep-muted)}
+.signup label.terms{grid-column:1/-1;font-size:14px;color:var(--on-deep-muted);display:flex;gap:8px;justify-content:center;align-items:center;margin-top:6px}
+.signup .ok{margin-top:18px;color:var(--mint);min-height:1.6em}
+@media (max-width:640px){.signup form{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:var(--deep);color:var(--on-deep-muted);padding:70px 0 40px;font-size:15px;border-top:1px solid var(--deep-3)}
+footer .grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
+footer h4{color:var(--on-deep);font-size:14px;margin:0 0 14px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--on-deep)}
+footer .logo{color:var(--on-deep);margin-bottom:12px}
+footer .base{margin-top:54px;padding-top:22px;border-top:1px solid var(--deep-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px}
+@media (max-width:760px){footer .grid{grid-template-columns:1fr 1fr}}
+
+/* load moment: heart-rate line draws across the hero */
+.pulse{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 2s ease .2s forwards}
+.fade{opacity:0;animation:fade .5s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+</style>
+</head>
+<body>
+
+<div class="top-banner">This website was created by Brain Quest Consultancy &amp; Training</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">
+      <svg class="logo-mark" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="7" fill="#0F2A26"/><path d="M4 16h6l3-7 4 13 3-6h6" fill="none" stroke="#FF6B3D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Fitcrum
+    </a>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#" aria-current="page">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#store">Store</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;gap:14px;align-items:center">
+      <a class="btn solid hide-sm" href="#join">Join free</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav" onclick="const n=document.getElementById('nav');const o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu'">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="kicker" style="margin-bottom:16px">Fitness literacy</p>
+      <h1>Know why it works before you do it.</h1>
+      <p class="lede">Fitcrum explains how training, food, sleep and recovery actually affect your body, in plain language, so you can judge any plan or trend for yourself.</p>
+      <div class="ctas">
+        <a class="btn solid" href="#join">Join the waitlist</a>
+        <a class="btn ghost" href="#method">See the platform</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="panel">
+        <svg viewBox="0 0 560 420" role="img" aria-label="Illustrated squat with form notes and a heart-rate line">
+          <rect width="560" height="420" fill="#0F2A26"/>
+          <g stroke="#173A34" stroke-width="1">
+            <path d="M0 70h560M0 140h560M0 210h560M0 280h560M0 350h560M93 0v420M186 0v420M279 0v420M372 0v420M465 0v420"/>
+          </g>
+          <path class="pulse" d="M20 70h90l14-34 18 64 16-46 12 16h120l14-34 18 64 16-46 12 16h120l14-34 18 64 16-46 12 16h40" fill="none" stroke="#FF6B3D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- floor -->
+          <path d="M90 360h300" stroke="#24504A" stroke-width="4" stroke-linecap="round"/>
+          <!-- squat figure -->
+          <g stroke-linecap="round" stroke-linejoin="round">
+            <path d="M250 270l52 30 -12 60" stroke="#9ED9C3" stroke-width="22" fill="none"/>
+            <path d="M250 270l40-82" stroke="#EAF2EE" stroke-width="30" fill="none"/>
+            <path d="M282 206l70 18" stroke="#EAD9B8" stroke-width="14" fill="none"/>
+            <circle cx="304" cy="160" r="22" fill="#EAF2EE"/>
+            <path d="M282 360h34" stroke="#EAF2EE" stroke-width="12"/>
+          </g>
+          <!-- form annotations -->
+          <g class="fade" style="animation-delay:1.2s">
+            <path d="M314 360v-90" stroke="#9ED9C3" stroke-width="2" stroke-dasharray="5 6"/>
+            <path d="M226 296l-34 0" stroke="#FF6B3D" stroke-width="2.5" fill="none"/><path d="M200 288l-8 8 8 8" stroke="#FF6B3D" stroke-width="2.5" fill="none"/>
+            <circle cx="250" cy="270" r="6" fill="#FF6B3D"/>
+            <path d="M262 230l-14 -30" stroke="#BFD7F2" stroke-width="2" stroke-dasharray="4 5"/>
+          </g>
+          <g class="fade" font-family="Manrope, sans-serif" font-size="14" font-weight="700" style="animation-delay:1.5s">
+            <rect x="374" y="150" width="150" height="30" rx="6" fill="#173A34"/><text x="388" y="170" fill="#EAF2EE">neutral spine</text>
+            <rect x="60" y="281" width="122" height="30" rx="6" fill="#173A34"/><text x="74" y="301" fill="#FF6B3D">hips go back</text>
+            <rect x="336" y="268" width="128" height="30" rx="6" fill="#173A34"/><text x="350" y="288" fill="#9ED9C3">knees over toes</text>
+            <text x="360" y="345" fill="#A5BDB6">why each cue matters</text>
+          </g>
+        </svg>
+      </div>
+      <div class="offer-cards">
+        <div class="offer"><small>Free course</small><strong>Training basics, explained</strong><span>€0</span></div>
+        <div class="offer"><small>1-hour session</small><strong>Plan &amp; form review</strong><span>€150</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD (dark) -->
+<section class="section deep" id="method">
+  <div class="wrap method-grid">
+    <div>
+      <h2>Fewer rules. More understanding.</h2>
+      <p class="lede" style="margin-top:20px">Most fitness content tells you what to do. Fitcrum shows you why, so you stop depending on the next programme or influencer.</p>
+      <div class="steps">
+        <div class="step"><b>01</b><div><h3>Learn the mechanism</h3><p>Short lessons on how muscles adapt, how energy is used and why recovery matters.</p></div></div>
+        <div class="step"><b>02</b><div><h3>Read the evidence</h3><p>See what research generally supports, what is still debated and what is mostly marketing.</p></div></div>
+        <div class="step"><b>03</b><div><h3>Apply it to your week</h3><p>Use simple checklists to adjust your own routine instead of copying someone else's.</p></div></div>
+      </div>
+      <a class="btn ghost" style="margin-top:36px" href="#">See the platform</a>
+    </div>
+    <div class="mosaic">
+      <figure>
+        <svg viewBox="0 0 300 420" aria-hidden="true">
+          <rect width="300" height="420" fill="#173A34"/>
+          <g fill="none" stroke-linecap="round" stroke-width="10">
+            <path d="M150 70a120 120 0 1 1 -1 0" stroke="#24504A"/>
+            <path d="M150 70a120 120 0 0 1 116 150" stroke="#FF6B3D"/>
+            <path d="M266 220a120 120 0 0 1 -150 100" stroke="#9ED9C3"/>
+            <path d="M116 320a120 120 0 0 1 -60 -70" stroke="#EAD9B8"/>
+          </g>
+          <g font-family="Manrope, sans-serif" font-weight="700" font-size="15" text-anchor="middle">
+            <text x="150" y="186" fill="#EAF2EE" font-size="20">Your week</text>
+            <text x="150" y="210" fill="#A5BDB6">train · eat · rest</text>
+          </g>
+        </svg>
+        <figcaption>see how the parts fit together</figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 300 200" aria-hidden="true"><rect width="300" height="200" fill="#173A34"/>
+          <circle cx="150" cy="100" r="62" fill="#EAF2EE"/>
+          <path d="M150 100V38a62 62 0 0 1 54 92z" fill="#FF6B3D"/>
+          <path d="M150 100l54 30a62 62 0 0 1 -96 14z" fill="#9ED9C3"/>
+          <circle cx="150" cy="100" r="24" fill="#173A34"/></svg>
+        <figcaption>food, without the fads</figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 300 200" aria-hidden="true"><rect width="300" height="200" fill="#173A34"/>
+          <path d="M178 50a52 52 0 1 0 50 72a42 42 0 0 1 -50 -72z" fill="#BFD7F2"/>
+          <g fill="#EAD9B8"><circle cx="90" cy="60" r="3"/><circle cx="70" cy="110" r="2"/><circle cx="110" cy="140" r="3"/></g></svg>
+        <figcaption>recovery counts too</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE (white) -->
+<section class="section" id="explore">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Explore</h2>
+      <p>Everything Fitcrum offers, from free lessons to one-to-one reviews.</p>
+    </div>
+    <div class="explore">
+      <article class="ex"><span class="num">01</span>
+        <svg class="ico" viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 10h13a4 4 0 014 4v20a3 3 0 00-3-3H6zM36 10H23v24a3 3 0 013-3h10z"/></svg>
+        <h3>Courses</h3><p>Self-paced lessons on training, nutrition and recovery basics.</p><a href="#courses">Browse courses</a></article>
+      <article class="ex"><span class="num">02</span>
+        <svg class="ico" viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="6" y="9" width="30" height="27" rx="3"/><path d="M6 17h30M14 5v8M28 5v8"/></svg>
+        <h3>Events</h3><p>Live Q&amp;A sessions where a popular fitness claim is checked against the evidence.</p><a href="#">See upcoming events</a></article>
+      <article class="ex"><span class="num">03</span>
+        <svg class="ico" viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M8 30V12a4 4 0 014-4h18a4 4 0 014 4v12a4 4 0 01-4 4H16l-8 6z"/></svg>
+        <h3>Consulting</h3><p>A one-to-one review of your current routine and what to change first.</p><a href="#services">Book a call</a></article>
+      <article class="ex"><span class="num">04</span>
+        <svg class="ico" viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M8 14h26l-2 20H10zM15 14a6 6 0 0112 0"/></svg>
+        <h3>Shop</h3><p>Training logs, exercise card decks and simple kit for home sessions.</p><a href="#store">Visit the shop</a></article>
+      <article class="ex"><span class="num">05</span>
+        <svg class="ico" viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="15" cy="15" r="5"/><circle cx="29" cy="17" r="4"/><path d="M5 34c1-7 6-10 10-10s9 3 10 10M24 28c1-3 3-5 5-5 4 0 7 3 8 8"/></svg>
+        <h3>Community</h3><p>A members' space to ask questions and share what is working for you.</p><a href="#join">Join the community</a></article>
+      <article class="ex"><span class="num">06</span>
+        <svg class="ico" viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="9" y="6" width="24" height="30" rx="2"/><path d="M14 14h14M14 20h14M14 26h9"/></svg>
+        <h3>Articles</h3><p>Plain-language breakdowns of common fitness myths and new research.</p><a href="#">Read articles</a></article>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE BAND (dark image + white section) -->
+<section class="section band" style="padding-top:0">
+  <div class="wrap">
+    <div class="panel">
+      <svg viewBox="0 0 560 360" aria-hidden="true">
+        <rect width="560" height="360" fill="#0F2A26"/>
+        <path d="M60 300h460M60 300V50" stroke="#24504A" stroke-width="3"/>
+        <path d="M60 280 C140 270 160 120 220 110 S300 260 360 250 S440 90 510 80" fill="none" stroke="#FF6B3D" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60 280 C150 278 260 200 510 150" fill="none" stroke="#9ED9C3" stroke-width="4" stroke-dasharray="8 9" stroke-linecap="round"/>
+        <g font-family="Manrope, sans-serif" font-size="15" font-weight="700">
+          <text x="250" y="96" fill="#FF6B3D">quick-fix plans</text>
+          <text x="380" y="196" fill="#9ED9C3">steady, understood progress</text>
+          <text x="66" y="326" fill="#A5BDB6">weeks →</text>
+        </g>
+      </svg>
+    </div>
+    <div>
+      <h2>Stop starting over every January.</h2>
+      <p class="lede">When you understand what each part of a routine is for, you can keep it going, adapt it when life changes and spot advice that does not add up.</p>
+      <ul>
+        <li>No miracle programmes or before-and-after photos</li>
+        <li>Clear labels on what is well supported and what is not</li>
+        <li>Checklists you can apply to your own routine</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES + SERVICES (white) -->
+<section class="section" id="services" style="background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head"><h2>Learn it, or get it reviewed</h2><p>Start with a free course, or book time for a review of your own routine.</p></div>
+    <div class="cols">
+      <div id="courses">
+        <p class="list-title">Courses</p>
+        <div class="course">
+          <div class="thumb"><svg viewBox="0 0 110 80"><rect width="110" height="80" fill="#0F2A26"/><path d="M14 46h22l6-16 8 28 6-18 4 6h36" fill="none" stroke="#FF6B3D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><h3>Training basics, explained</h3><small>6 short lessons · self-paced</small><br><span class="pill">Free</span></div>
+        </div>
+        <div class="course">
+          <div class="thumb"><svg viewBox="0 0 110 80"><rect width="110" height="80" fill="#9ED9C3"/><circle cx="55" cy="40" r="22" fill="#FFFFFF"/><path d="M55 40V18a22 22 0 0 1 19 33z" fill="#FF6B3D"/></svg></div>
+          <div><h3>Reading a food label</h3><small>4 lessons · worksheets included</small><br><span class="pill">Free</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="list-title">Services</p>
+        <div class="svc"><div><h3>Plan &amp; form review</h3><p>Walk through your current routine and get a written list of changes.</p></div><div><div class="price">€150</div><div class="meta">1 hr · online</div></div><a class="btn ghost" href="#">Book now</a></div>
+        <div class="svc"><div><h3>Quick check-in</h3><p>In-person in Eindhoven. One question, one clear answer.</p></div><div><div class="price">€50</div><div class="meta">30 min · in person</div></div><a class="btn ghost" href="#">More info</a></div>
+        <div class="svc"><div><h3>Workplace session</h3><p>On-site talk for a team on movement, sleep and energy at work.</p></div><div><div class="price">€560</div><div class="meta">in person</div></div><a class="btn ghost" href="#">More info</a></div>
+        <div class="svc"><div><h3>Online class</h3><p>Live, small group, one topic explained end to end.</p></div><div><div class="price">€560</div><div class="meta">1 hr · online</div></div><a class="btn ghost" href="#">Book now</a></div>
+        <div class="svc"><div><h3>Group course</h3><p>Four weeks, cohort-based. Next cohort starts 8 October.</p></div><div><div class="price"><s>€520</s>€450</div><div class="meta">cohort · online</div></div><a class="btn solid" href="#">Book now</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS (light) -->
+<section class="section" id="store">
+  <div class="wrap">
+    <div class="section-head"><h2>From the shop</h2><a class="btn ghost" href="#">View all products</a></div>
+    <div class="products" id="products"></div>
+  </div>
+</section>
+
+<!-- ABOUT (light, dark image) -->
+<section class="section editorial" id="about" style="padding-top:20px">
+  <div class="wrap">
+    <div>
+      <h2>Fitness explained by people who check the facts.</h2>
+      <div class="cols2">
+        <p><strong>Why it exists</strong>Fitness advice is everywhere, and much of it contradicts itself. Fitcrum sorts out what holds up.</p>
+        <p><strong>What it does</strong>Turns the science behind training, food and recovery into lessons anyone can follow.</p>
+        <p><strong>Who it is for</strong>Busy adults who want to stay fit for the long run without chasing every new trend.</p>
+        <p><strong>What it is not</strong>Not a gym, not a diet plan and not medical advice. For health concerns, see a professional.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <svg viewBox="0 0 480 400" aria-hidden="true">
+        <rect width="480" height="400" fill="#0F2A26"/>
+        <g stroke-linecap="round">
+          <path d="M120 300h240" stroke="#24504A" stroke-width="4"/>
+          <rect x="140" y="190" width="200" height="16" rx="8" fill="#EAF2EE"/>
+          <rect x="112" y="150" width="34" height="96" rx="8" fill="#FF6B3D"/>
+          <rect x="334" y="150" width="34" height="96" rx="8" fill="#FF6B3D"/>
+          <rect x="88" y="166" width="24" height="64" rx="6" fill="#9ED9C3"/>
+          <rect x="368" y="166" width="24" height="64" rx="6" fill="#9ED9C3"/>
+        </g>
+        <text x="240" y="100" text-anchor="middle" font-family="Archivo, sans-serif" font-stretch="72%" font-weight="900" font-size="40" fill="#EAF2EE">STRENGTH = SKILL</text>
+        <text x="240" y="340" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="700" font-size="16" fill="#A5BDB6">learnable, like anything else</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- TWIN CTA (one dark, one light) -->
+<section class="section" style="padding-top:20px">
+  <div class="wrap twin">
+    <div class="cta-card cta-a">
+      <h2>Not sure your routine works?</h2>
+      <p>Book a 1-hour review. You share what you do now, you leave knowing what to keep and what to change.</p>
+      <a class="btn solid" href="#services">Book a call</a>
+      <svg class="deco" viewBox="0 0 220 160" aria-hidden="true"><path d="M10 120h40l12-30 16 56 14-40 10 14h110" fill="none" stroke="#24504A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="cta-card cta-b">
+      <h2>Train smarter together</h2>
+      <p>Ask questions, share progress and compare notes with others learning the same way.</p>
+      <a class="btn ghost" href="#join">Join the community</a>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP (dark) -->
+<section class="section deep signup" id="join">
+  <div class="wrap">
+    <p class="kicker" style="margin-bottom:14px">Free account</p>
+    <h2>Create a free account and get started right away.</h2>
+    <form onsubmit="event.preventDefault();this.querySelector('.ok').textContent='Thanks — this is a mockup, so nothing was sent.'">
+      <input type="text" aria-label="Name" placeholder="Name" required>
+      <input type="email" aria-label="Email" placeholder="Email" required>
+      <button class="btn solid" type="submit">Create account</button>
+      <label class="terms"><input type="checkbox" required> I agree to the terms and conditions.</label>
+      <p class="ok" aria-live="polite" style="grid-column:1/-1"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <a class="logo" href="#">
+          <svg class="logo-mark" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="7" fill="#173A34"/><path d="M4 16h6l3-7 4 13 3-6h6" fill="none" stroke="#FF6B3D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Fitcrum
+        </a>
+        <p style="max-width:32ch">Fitness literacy for people who want to understand what they are doing.</p>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="#">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#services">Services</a></li><li><a href="#store">Shop</a></li><li><a href="#courses">Courses</a></li><li><a href="#">Events</a></li><li><a href="#">Articles</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="#">Privacy policy</a></li><li><a href="#">Terms &amp; conditions</a></li><li><a href="#">Cookie notice</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li></ul></div>
+    </div>
+    <div class="base"><span>© 2026 Fitcrum</span><span>Built on Wix Studio</span></div>
+  </div>
+</footer>
+
+<script>
+const ICONS={
+ log:'<rect x="22" y="12" width="56" height="76" rx="4"/><path d="M32 30h36M32 42h36M32 54h24"/><path d="M32 70l8-6 8 4 10-10 10 6"/>',
+ cards:'<rect x="18" y="22" width="44" height="62" rx="5" transform="rotate(-10 40 53)"/><rect x="38" y="16" width="44" height="62" rx="5"/><circle cx="60" cy="38" r="6"/><path d="M60 44v14M52 66l8-8 8 8M52 50h16"/>',
+ bands:'<path d="M20 30c20 10 40 10 60 0M20 50c20 10 40 10 60 0M20 70c20 10 40 10 60 0"/>',
+ shaker:'<path d="M34 24h32l-4 64H38z"/><rect x="32" y="12" width="36" height="12" rx="3"/><path d="M38 44h24"/>',
+ tote:'<path d="M18 36h64l-6 56H24z"/><path d="M36 36c0-14 6-22 14-22s14 8 14 22"/><path d="M32 66h8l4-8 6 16 4-8h14"/>',
+ bottle:'<rect x="36" y="22" width="28" height="68" rx="8"/><rect x="40" y="10" width="20" height="12" rx="3"/><path d="M36 50h28"/>',
+ roller:'<rect x="14" y="36" width="72" height="28" rx="14"/><path d="M28 36v28M42 36v28M56 36v28M70 36v28"/>',
+ poster:'<rect x="18" y="12" width="64" height="76" rx="3"/><circle cx="50" cy="28" r="7"/><path d="M50 35v24M38 46h24M50 59l-10 18M50 59l10 18"/>'
+};
+const P=[
+ ['12-week training log','€20','log','#0F2A26','Best seller'],
+ ['Exercise form card deck','€29','cards','#FF6B3D',''],
+ ['Resistance band set','€35','bands','#9ED9C3','New'],
+ ['Fitcrum shaker','€15','shaker','#173A34',''],
+ ['Fitcrum gym tote','€20','tote','#EAD9B8',''],
+ ['Insulated water bottle','€24','bottle','#BFD7F2',''],
+ ['Foam roller','<s>€32</s>€22','roller','#24504A','Sale'],
+ ['"How a squat works" poster','€30','poster','#FFFFFF','Pre-order']
+];
+const host=document.getElementById('products');
+P.forEach(([n,p,i,bg,tag])=>{
+  const dark=['#0F2A26','#173A34','#24504A'].includes(bg);
+  const stroke=dark?'#EAF2EE':'#11201D';
+  const border=bg==='#FFFFFF'?'border:1px solid var(--line);':'';
+  host.insertAdjacentHTML('beforeend',`<article class="prod">
+    <div class="pic" style="background:${bg};${border}">${tag?`<span class="tag">${tag}</span>`:''}
+      <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="${stroke}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">${ICONS[i]}</g></svg></div>
+    <h3>${n}</h3><div class="p">${p}</div>
+    <button class="btn ghost">${tag==='Pre-order'?'Pre-order':'Add to cart'}</button></article>`);
+});
+</script>
+</body>
+</html>

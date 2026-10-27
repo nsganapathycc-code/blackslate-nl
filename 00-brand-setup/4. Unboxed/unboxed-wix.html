@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unboxed — Home (mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1F2347; --navy-2:#2B3060; --navy-3:#3B4178;
+  --chalk:#F3F5F8; --paper:#FFFFFF; --ink:#181B33; --muted:#5B6078;
+  --line:#DCE0EA; --sun:#F3B33D; --tomato:#E85D3F; --teal:#2BA39A; --violet:#8C7CF0; --kraft:#C89B6A;
+  --on-dark:#EEF0FA; --on-dark-muted:#AEB3D2;
+  --display:"Bricolage Grotesque", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --sans:"Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --max:1180px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root{color-scheme:light}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px);scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--chalk);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1;margin:0;letter-spacing:-.025em}
+h1{font-size:clamp(46px,7vw,90px)}
+h2{font-size:clamp(34px,4.4vw,54px)}
+h3{font-size:28px;font-weight:700}
+p{margin:0}
+.lede{font-size:19px;color:var(--muted);max-width:52ch}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;border:2px solid currentColor;cursor:pointer;background:none;font-family:var(--sans);transition:transform .15s,background .2s}
+.btn.solid{background:var(--sun);border-color:var(--sun);color:#181B33;box-shadow:3px 3px 0 var(--ink)}
+.btn.solid:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.btn.ghost:hover{background:rgba(127,127,127,.12)}
+.section{padding:110px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:44px;flex-wrap:wrap}
+.section-head p{max-width:46ch;color:var(--muted)}
+.dark{background:#ECEAFB;color:var(--ink)}
+.dark .lede,.dark .section-head p{color:var(--muted)}
+.kicker{font-family:var(--display);font-weight:700;font-size:18px;color:var(--tomato)}
+
+/* header */
+.top-banner{background:var(--navy);color:var(--on-dark-muted);font-size:13px;text-align:center;padding:7px 16px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--chalk) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:26px;text-decoration:none;letter-spacing:-.03em}
+.logo-mark{width:30px;height:30px}
+nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;font-size:15px;font-weight:600}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover,nav a[aria-current]{color:var(--ink)}
+.menu-btn{display:none;background:none;border:0;font:inherit;font-weight:700;color:var(--ink);cursor:pointer}
+@media (max-width:820px){
+  nav{display:none}
+  nav.open{display:block;position:absolute;top:72px;left:0;right:0;background:var(--chalk);border-bottom:1px solid var(--line)}
+  nav.open ul{flex-direction:column;gap:0;padding:8px 24px 18px}
+  nav.open li a{display:block;padding:12px 0;border-bottom:1px solid var(--line)}
+  .menu-btn{display:block}
+  .hide-sm{display:none}
+}
+
+/* hero */
+.hero{padding:72px 0 96px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero p.lede{margin:26px 0 34px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-visual{position:relative}
+.panel{border-radius:22px;background:#E4E9F4;overflow:hidden}
+.panel svg>rect:first-child{fill:#E4E9F4}
+.panel svg{width:100%;height:auto}
+.offer-cards{position:absolute;left:-28px;bottom:-34px;display:flex;gap:12px}
+.offer{background:var(--paper);color:var(--ink);border-radius:14px;padding:14px 16px;width:180px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.offer small{display:block;color:var(--muted);font-size:12px}
+.offer strong{display:block;font-size:15px;margin:2px 0 6px;line-height:1.3}
+.offer span{font-size:13px;font-weight:800}
+@media (max-width:920px){
+  .hero .wrap{grid-template-columns:1fr}
+  .offer-cards{position:static;margin-top:16px}
+  .offer{flex:1;width:auto}
+}
+
+/* method */
+.method-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.steps{margin-top:34px;display:grid;gap:26px}
+.step{display:grid;grid-template-columns:44px 1fr;gap:14px}
+.step b{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-family:var(--display);font-size:20px;color:#181B33}
+.step:nth-child(1) b{background:var(--sun)}.step:nth-child(2) b{background:var(--teal)}.step:nth-child(3) b{background:var(--tomato)}
+.step h3{font-family:var(--sans);font-size:17px;font-weight:700;letter-spacing:0;margin-bottom:4px}
+.step p{color:var(--muted);font-size:16px}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mosaic figure{margin:0;border-radius:16px;overflow:hidden;background:#DCD8F7}
+.mosaic svg>rect:first-child{fill:#DCD8F7}
+.mosaic figure:nth-child(1){grid-row:span 2}
+.mosaic figcaption{font-weight:600;font-size:14px;color:var(--muted);padding:0 16px 14px}
+@media (max-width:920px){.method-grid{grid-template-columns:1fr;gap:44px}}
+
+/* explore */
+.explore{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.ex{padding:34px 30px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:12px;min-height:260px;background:var(--paper)}
+.ex .num{font-size:13px;color:var(--muted);font-weight:700}
+.ex .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;color:#181B33}
+.ex .ico svg{width:26px;height:26px}
+.ex h3{font-size:30px}
+.ex p{color:var(--muted);font-size:15.5px;flex:1}
+.ex a{font-weight:700;font-size:15px;text-underline-offset:4px}
+@media (max-width:900px){.explore{grid-template-columns:1fr 1fr}}
+@media (max-width:580px){.explore{grid-template-columns:1fr}}
+
+/* band */
+.band .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.band .lede{margin-top:20px}
+.band ul{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px}
+.band li{padding-left:28px;position:relative;color:var(--muted)}
+.band li::before{content:"";position:absolute;left:0;top:8px;width:12px;height:12px;border-radius:3px;background:var(--teal)}
+.band li:nth-child(2)::before{background:var(--sun)}.band li:nth-child(3)::before{background:var(--tomato)}
+@media (max-width:900px){.band .wrap{grid-template-columns:1fr}}
+
+/* courses + services */
+.cols{display:grid;grid-template-columns:1fr 1.6fr;gap:56px}
+.course{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.course .thumb{border-radius:12px;overflow:hidden}
+.course h3{font-size:24px}
+.course small{color:var(--muted)}
+.pill{display:inline-block;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--teal) 25%,transparent);margin-top:6px}
+.svc{display:grid;grid-template-columns:1fr auto auto;gap:22px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.svc h3{font-family:var(--sans);font-size:17px;font-weight:700;letter-spacing:0}
+.svc p{color:var(--muted);font-size:14.5px}
+.svc .meta{font-size:14px;color:var(--muted);text-align:right;white-space:nowrap}
+.svc .price{font-family:var(--display);font-weight:800;font-size:28px;white-space:nowrap;text-align:right}
+.svc .price s{font-size:17px;font-weight:500;color:var(--muted);margin-right:6px}
+.svc .btn{padding:9px 16px;font-size:14px}
+.list-title{font-size:14px;font-weight:700;color:var(--muted);margin-bottom:6px}
+@media (max-width:900px){.cols{grid-template-columns:1fr}.svc{grid-template-columns:1fr auto}.svc .btn{grid-column:1/-1;justify-self:start}}
+
+/* products */
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 20px}
+.prod .pic{aspect-ratio:4/5;border-radius:16px;display:grid;place-items:center;position:relative;overflow:hidden}
+.prod .pic svg{width:58%}
+.tag{position:absolute;top:12px;left:12px;background:var(--paper);color:var(--ink);font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px}
+.prod h3{font-family:var(--sans);font-size:15.5px;font-weight:600;letter-spacing:0;line-height:1.35;margin:12px 0 2px}
+.prod .p{font-size:15px;color:var(--muted)}
+.prod .p s{margin-right:6px}
+.prod button{margin-top:10px;width:100%;justify-content:center;padding:10px}
+@media (max-width:900px){.products{grid-template-columns:repeat(2,1fr)}}
+
+/* about */
+.editorial .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+.editorial .cols2{display:grid;grid-template-columns:1fr 1fr;gap:22px 32px;margin-top:30px}
+.editorial .cols2 p{color:var(--muted);font-size:16px}
+.editorial .cols2 strong{display:block;color:var(--ink);margin-bottom:4px}
+@media (max-width:900px){.editorial .wrap{grid-template-columns:1fr}.editorial .cols2{grid-template-columns:1fr}}
+
+/* twin CTA */
+.twin{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cta-card{border-radius:22px;padding:46px 40px;display:flex;flex-direction:column;gap:16px;min-height:300px;position:relative;overflow:hidden}
+.cta-card p{max-width:40ch}
+.cta-card .btn{align-self:start;margin-top:auto}
+.cta-a{background:var(--navy);color:var(--on-dark)}
+.cta-a p{color:var(--on-dark-muted)}
+.cta-a .btn.solid{box-shadow:3px 3px 0 #0C0E22}
+.cta-b{background:var(--teal);color:#0F1A2A}
+.cta-b .btn{border-color:#0F1A2A}
+.cta-card .deco{position:absolute;right:-20px;bottom:-20px;width:190px;pointer-events:none}
+@media (max-width:820px){.twin{grid-template-columns:1fr}}
+
+/* signup */
+.signup{text-align:center}
+.signup h2{max-width:18ch;margin:0 auto}
+.signup form{margin:34px auto 0;max-width:620px;display:grid;grid-template-columns:1fr 1fr auto;gap:10px}
+.signup input[type=text],.signup input[type=email]{padding:14px 18px;border-radius:12px;border:2px solid var(--ink);background:#FFFFFF;color:var(--ink);font:inherit;font-size:15px}
+.signup input::placeholder{color:var(--muted)}
+.signup label.terms{grid-column:1/-1;font-size:14px;color:var(--muted);display:flex;gap:8px;justify-content:center;align-items:center;margin-top:6px}
+.signup .ok{margin-top:18px;color:var(--tomato);min-height:1.6em}
+@media (max-width:640px){.signup form{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:var(--navy);color:var(--on-dark-muted);padding:70px 0 40px;font-size:15px;border-top:1px solid var(--navy-3)}
+footer .grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
+footer h4{color:var(--on-dark);font-size:14px;margin:0 0 14px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--on-dark)}
+footer .logo{color:var(--on-dark);margin-bottom:12px}
+footer .base{margin-top:54px;padding-top:22px;border-top:1px solid var(--navy-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px}
+@media (max-width:760px){footer .grid{grid-template-columns:1fr 1fr}}
+
+/* load moment: objects pop out of the box in the hero only */
+.pop>g{transform-box:fill-box;transform-origin:center bottom;opacity:0;animation:pop .7s cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes pop{from{opacity:0;transform:translateY(60px) scale(.4)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="top-banner">This website was created by Brain Quest Consultancy &amp; Training</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">
+      <svg class="logo-mark" viewBox="0 0 30 30" aria-hidden="true"><path d="M4 13h22v13H4z" fill="#C89B6A"/><path d="M4 13L1 7h12l2 6zM26 13l3-6H17l-2 6z" fill="#A87C4F"/><circle cx="11" cy="5" r="3" fill="#E85D3F"/><rect x="16" y="1" width="5" height="5" rx="1" fill="#2BA39A"/></svg>
+      Unboxed
+    </a>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#" aria-current="page">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#store">Store</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;gap:14px;align-items:center">
+      <a class="btn solid hide-sm" href="#join">Join free</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav" onclick="const n=document.getElementById('nav');const o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu'">Menu</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="kicker" style="margin-bottom:14px">Online courses for curious adults and kids</p>
+      <h1>You were never meant to fit in one box.</h1>
+      <p class="lede">Unboxed runs short online sessions across very different fields, from film-making to problem solving, so you can keep learning outside your job title or your timetable.</p>
+      <div class="ctas">
+        <a class="btn solid" href="#join">Join the waitlist</a>
+        <a class="btn ghost" href="#method">See the platform</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="panel">
+        <svg viewBox="0 0 560 420" role="img" aria-label="An open cardboard box with symbols of different fields popping out">
+          <rect width="560" height="420" fill="#1F2347"/>
+          <circle cx="90" cy="70" r="3" fill="#AEB3D2"/><circle cx="480" cy="50" r="2" fill="#AEB3D2"/><circle cx="510" cy="200" r="3" fill="#AEB3D2"/><circle cx="50" cy="230" r="2" fill="#AEB3D2"/>
+          <g class="pop">
+            <!-- music note -->
+            <g style="animation-delay:.25s"><circle cx="150" cy="150" r="44" fill="#8C7CF0"/><path d="M142 172V128l24-6v38" stroke="#181B33" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="136" cy="172" r="8" fill="#181B33"/><circle cx="160" cy="162" r="8" fill="#181B33"/></g>
+            <!-- camera -->
+            <g style="animation-delay:.4s"><rect x="224" y="60" width="104" height="74" rx="16" fill="#E85D3F"/><circle cx="276" cy="97" r="22" fill="#181B33"/><circle cx="276" cy="97" r="10" fill="#F3F5F8"/><rect x="236" y="68" width="18" height="9" rx="3" fill="#181B33"/></g>
+            <!-- lightbulb -->
+            <g style="animation-delay:.55s"><circle cx="404" cy="146" r="44" fill="#F3B33D"/><path d="M404 120a18 18 0 0110 33v8h-20v-8a18 18 0 0110-33z" fill="#F3F5F8" stroke="#181B33" stroke-width="4"/><path d="M396 170h16" stroke="#181B33" stroke-width="4" stroke-linecap="round"/></g>
+            <!-- globe -->
+            <g style="animation-delay:.7s"><circle cx="210" cy="214" r="30" fill="#2BA39A"/><path d="M180 214h60M210 184c-12 16-12 44 0 60M210 184c12 16 12 44 0 60" stroke="#181B33" stroke-width="3.5" fill="none"/></g>
+            <!-- dumbbell -->
+            <g style="animation-delay:.85s"><g transform="rotate(-18 344 214)"><rect x="312" y="210" width="64" height="9" rx="4" fill="#1F2347"/><rect x="302" y="196" width="14" height="36" rx="4" fill="#1F2347"/><rect x="372" y="196" width="14" height="36" rx="4" fill="#1F2347"/></g></g>
+          </g>
+          <!-- box -->
+          <path d="M120 250h320v130H120z" fill="#C89B6A"/>
+          <path d="M120 250l-52 46h300l72-46z" fill="#B08355" opacity=".0"/>
+          <path d="M120 250L58 214l52-12 66 48z" fill="#A87C4F"/>
+          <path d="M440 250l62-36-52-12-66 48z" fill="#A87C4F"/>
+          <path d="M120 250h320" stroke="#8E6640" stroke-width="3"/>
+          <rect x="250" y="300" width="60" height="26" rx="4" fill="#F3F5F8" opacity=".85"/>
+          <text x="280" y="318" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="13" fill="#181B33">OPEN ME</text>
+        </svg>
+      </div>
+      <div class="offer-cards">
+        <div class="offer"><small>Free course</small><strong>Creative problem solving</strong><span>€0</span></div>
+        <div class="offer"><small>Live online, ages 9–14</small><strong>Film it on a phone</strong><span>€450</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="section dark" id="method">
+  <div class="wrap method-grid">
+    <div>
+      <h2>One topic per session. A new door every time.</h2>
+      <p class="lede" style="margin-top:20px">Each session takes one field and shows you how it works as a whole, then links it back to what you already know.</p>
+      <div class="steps">
+        <div class="step"><b>1</b><div><h3>Pick a field</h3><p>Music, film, fitness, problem solving, or something you would never have signed up for on your own.</p></div></div>
+        <div class="step"><b>2</b><div><h3>Get the whole picture</h3><p>You learn the core ideas that make the field tick, not a list of facts to memorise.</p></div></div>
+        <div class="step"><b>3</b><div><h3>Connect it</h3><p>Every session ends by tying the new field to your work, your studies or your other interests.</p></div></div>
+      </div>
+      <a class="btn ghost" style="margin-top:36px" href="#">See the platform</a>
+    </div>
+    <div class="mosaic">
+      <figure>
+        <svg viewBox="0 0 300 420" aria-hidden="true">
+          <rect width="300" height="420" fill="#2B3060"/>
+          <circle cx="150" cy="200" r="34" fill="#F3B33D"/>
+          <g stroke="#AEB3D2" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"><path d="M150 166V80M150 234v86M116 200H50M184 200h66M126 176L80 120M174 176l46-56M126 224l-46 56M174 224l46 56"/></g>
+          <circle cx="150" cy="70" r="20" fill="#E85D3F"/><circle cx="150" cy="330" r="20" fill="#2BA39A"/><circle cx="40" cy="200" r="16" fill="#8C7CF0"/><circle cx="260" cy="200" r="16" fill="#C89B6A"/>
+          <circle cx="72" cy="110" r="13" fill="#2BA39A"/><circle cx="228" cy="110" r="13" fill="#8C7CF0"/><circle cx="72" cy="290" r="13" fill="#F3B33D"/><circle cx="228" cy="290" r="13" fill="#E85D3F"/>
+        </svg>
+        <figcaption>every field connects to the others</figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 300 200" aria-hidden="true"><rect width="300" height="200" fill="#2B3060"/>
+          <rect x="60" y="50" width="180" height="110" rx="10" fill="#F3F5F8"/><rect x="60" y="50" width="180" height="22" rx="10" fill="#8C7CF0"/>
+          <circle cx="110" cy="115" r="22" fill="#F3B33D"/><circle cx="190" cy="115" r="22" fill="#2BA39A"/></svg>
+        <figcaption>live and online, from home</figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 300 200" aria-hidden="true"><rect width="300" height="200" fill="#2B3060"/>
+          <rect x="70" y="70" width="70" height="90" rx="8" fill="#E85D3F"/><rect x="160" y="40" width="70" height="120" rx="8" fill="#F3B33D"/>
+          <circle cx="105" cy="55" r="18" fill="#F3F5F8"/><circle cx="195" cy="25" r="14" fill="#F3F5F8" transform="translate(0 2)"/></svg>
+        <figcaption>for grown-ups and kids</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE -->
+<section class="section" id="explore">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Explore</h2>
+      <p>Everything Unboxed offers, from free sessions to live courses.</p>
+    </div>
+    <div class="explore">
+      <article class="ex"><span class="num">01</span>
+        <span class="ico" style="background:#F3B33D"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 10h13a4 4 0 014 4v20a3 3 0 00-3-3H6zM36 10H23v24a3 3 0 013-3h10z"/></svg></span>
+        <h3>Courses</h3><p>Self-paced lessons across fields, for adults and for kids.</p><a href="#courses">Browse courses</a></article>
+      <article class="ex"><span class="num">02</span>
+        <span class="ico" style="background:#E85D3F"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="3"><rect x="6" y="9" width="30" height="27" rx="3"/><path d="M6 17h30M14 5v8M28 5v8"/></svg></span>
+        <h3>Events</h3><p>Live online sessions, announced one at a time, each on a single topic.</p><a href="#">See upcoming events</a></article>
+      <article class="ex"><span class="num">03</span>
+        <span class="ico" style="background:#2BA39A"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="3"><path d="M8 30V12a4 4 0 014-4h18a4 4 0 014 4v12a4 4 0 01-4 4H16l-8 6z"/></svg></span>
+        <h3>Consulting</h3><p>A one-to-one online session to plan what to learn next, for yourself or your child.</p><a href="#services">Book a call</a></article>
+      <article class="ex"><span class="num">04</span>
+        <span class="ico" style="background:#8C7CF0"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="3"><path d="M8 14h26l-2 20H10zM15 14a6 6 0 0112 0"/></svg></span>
+        <h3>Shop</h3><p>Activity kits, card decks and journals to keep exploring between sessions.</p><a href="#store">Visit the shop</a></article>
+      <article class="ex"><span class="num">05</span>
+        <span class="ico" style="background:#C89B6A"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="3"><circle cx="15" cy="15" r="5"/><circle cx="29" cy="17" r="4"/><path d="M5 34c1-7 6-10 10-10s9 3 10 10M24 28c1-3 3-5 5-5 4 0 7 3 8 8"/></svg></span>
+        <h3>Community</h3><p>A members' space to share what you made and swap ideas across fields.</p><a href="#join">Join the community</a></article>
+      <article class="ex"><span class="num">06</span>
+        <span class="ico" style="background:#AEB3D2"><svg viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="3"><rect x="9" y="6" width="24" height="30" rx="2"/><path d="M14 14h14M14 20h14M14 26h9"/></svg></span>
+        <h3>Articles</h3><p>Short reads on learning across disciplines and why it matters now.</p><a href="#">Read articles</a></article>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE BAND -->
+<section class="section band" style="padding-top:0">
+  <div class="wrap">
+    <div class="panel">
+      <svg viewBox="0 0 560 360" aria-hidden="true">
+        <rect width="560" height="360" fill="#1F2347"/>
+        <rect x="60" y="70" width="150" height="220" rx="10" fill="none" stroke="#3B4178" stroke-width="4"/>
+        <circle cx="135" cy="180" r="34" fill="#AEB3D2"/>
+        <path d="M230 180h80" stroke="#F3B33D" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12"/>
+        <path d="M300 168l14 12-14 12" stroke="#F3B33D" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="420" cy="180" r="34" fill="#F3B33D"/>
+        <circle cx="370" cy="96" r="18" fill="#E85D3F"/><circle cx="480" cy="104" r="22" fill="#2BA39A"/><circle cx="356" cy="262" r="20" fill="#8C7CF0"/><circle cx="484" cy="262" r="16" fill="#C89B6A"/>
+        <g stroke="#3B4178" stroke-width="3"><path d="M420 146l-38-36M420 146l48-28M420 214l-50 34M420 214l50 36"/></g>
+      </svg>
+    </div>
+    <div>
+      <h2>For anyone who has been put in one track too long.</h2>
+      <p class="lede">Adults stuck in a single role at work and kids stuck in a single way of learning both get room to try something completely different.</p>
+      <ul>
+        <li>No prior knowledge needed for any session</li>
+        <li>Separate sessions for adults and for kids</li>
+        <li>Fully online, so you can join from anywhere</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES + SERVICES -->
+<section class="section" id="services" style="background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head"><h2>Start free, or go live</h2><p>Try a free course first, or book a live online session on one topic.</p></div>
+    <div class="cols">
+      <div id="courses">
+        <p class="list-title">Courses</p>
+        <div class="course">
+          <div class="thumb"><svg viewBox="0 0 110 80"><rect width="110" height="80" fill="#F3B33D"/><circle cx="55" cy="38" r="16" fill="#F3F5F8" stroke="#181B33" stroke-width="3"/><path d="M48 60h14" stroke="#181B33" stroke-width="3" stroke-linecap="round"/></svg></div>
+          <div><h3>Creative problem solving</h3><small>5 short lessons · adults</small><br><span class="pill">Free</span></div>
+        </div>
+        <div class="course">
+          <div class="thumb"><svg viewBox="0 0 110 80"><rect width="110" height="80" fill="#2BA39A"/><circle cx="40" cy="40" r="12" fill="#F3F5F8"/><circle cx="70" cy="40" r="12" fill="#181B33"/><path d="M52 40h6" stroke="#F3F5F8" stroke-width="3"/></svg></div>
+          <div><h3>More than your job title</h3><small>4 lessons · for expats</small><br><span class="pill">Free</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="list-title">Services</p>
+        <div class="svc"><div><h3>Learning path session</h3><p>Plan which fields to explore next, for you or your child.</p></div><div><div class="price">€150</div><div class="meta">1 hr · online</div></div><a class="btn ghost" href="#">Book now</a></div>
+        <div class="svc"><div><h3>Quick intro call</h3><p>Find out which upcoming session suits you best.</p></div><div><div class="price">€50</div><div class="meta">30 min · online</div></div><a class="btn ghost" href="#">More info</a></div>
+        <div class="svc"><div><h3>Private group session</h3><p>One topic for your team, class or family group.</p></div><div><div class="price">€560</div><div class="meta">online</div></div><a class="btn ghost" href="#">More info</a></div>
+        <div class="svc"><div><h3>Online class</h3><p>A live session on a single topic, small group.</p></div><div><div class="price">€560</div><div class="meta">1 hr · online</div></div><a class="btn ghost" href="#">Book now</a></div>
+        <div class="svc"><div><h3>Group course</h3><p>Smartphone film-making for kids. Starts 8 October.</p></div><div><div class="price"><s>€520</s>€450</div><div class="meta">cohort · online</div></div><a class="btn solid" href="#">Book now</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="store">
+  <div class="wrap">
+    <div class="section-head"><h2>From the shop</h2><a class="btn ghost" href="#">View all products</a></div>
+    <div class="products" id="products"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section editorial" id="about" style="padding-top:20px">
+  <div class="wrap">
+    <div>
+      <h2>Started by someone who never stayed in one lane.</h2>
+      <div class="cols2">
+        <p><strong>Where it comes from</strong>Two decades in engineering across India, the US and Europe, alongside music, writing and teaching.</p>
+        <p><strong>What it believes</strong>People contain more than one talent, and being able to move between fields is a skill worth training.</p>
+        <p><strong>Who it is for</strong>Adults who feel boxed in by their role, and kids who learn best when they can wander.</p>
+        <p><strong>How it runs</strong>Online only. Each session is announced when it is ready, one topic at a time.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <svg viewBox="0 0 480 400" aria-hidden="true">
+        <rect width="480" height="400" fill="#1F2347"/>
+        <rect x="70" y="70" width="110" height="110" rx="14" fill="#E85D3F"/>
+        <circle cx="330" cy="125" r="58" fill="#F3B33D"/>
+        <path d="M80 330l60-104 60 104z" fill="#2BA39A"/>
+        <rect x="270" y="230" width="120" height="100" rx="50" fill="#8C7CF0"/>
+        <rect x="205" y="185" width="60" height="60" rx="8" fill="#C89B6A" transform="rotate(14 235 215)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- TWIN CTA -->
+<section class="section" style="padding-top:20px">
+  <div class="wrap twin">
+    <div class="cta-card cta-a">
+      <h2>Not sure where to start?</h2>
+      <p>Book a short online call and we will pick a first topic that fits you or your child.</p>
+      <a class="btn solid" href="#services">Book a call</a>
+      <svg class="deco" viewBox="0 0 200 200" aria-hidden="true"><circle cx="130" cy="130" r="60" fill="#8C7CF0"/><rect x="40" y="110" width="60" height="60" rx="10" fill="#E85D3F"/></svg>
+    </div>
+    <div class="cta-card cta-b">
+      <h2>Learn alongside others</h2>
+      <p>Share what you are working on, see what others are trying, and swap ideas across fields.</p>
+      <a class="btn ghost" href="#join">Join the community</a>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNUP -->
+<section class="section dark signup" id="join">
+  <div class="wrap">
+    <p class="kicker" style="margin-bottom:10px">Free account</p>
+    <h2>Create a free account and get started right away.</h2>
+    <form onsubmit="event.preventDefault();this.querySelector('.ok').textContent='Thanks — this is a mockup, so nothing was sent.'">
+      <input type="text" aria-label="Name" placeholder="Name" required>
+      <input type="email" aria-label="Email" placeholder="Email" required>
+      <button class="btn solid" type="submit">Create account</button>
+      <label class="terms"><input type="checkbox" required> I agree to the terms and conditions.</label>
+      <p class="ok" aria-live="polite" style="grid-column:1/-1"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <a class="logo" href="#">
+          <svg class="logo-mark" viewBox="0 0 30 30" aria-hidden="true"><path d="M4 13h22v13H4z" fill="#C89B6A"/><path d="M4 13L1 7h12l2 6zM26 13l3-6H17l-2 6z" fill="#A87C4F"/><circle cx="11" cy="5" r="3" fill="#E85D3F"/><rect x="16" y="1" width="5" height="5" rx="1" fill="#2BA39A"/></svg>
+          Unboxed
+        </a>
+        <p style="max-width:32ch">Online courses across fields, for curious adults and kids.</p>
+      </div>
+      <div><h4>Explore</h4><ul><li><a href="#">Home</a></li><li><a href="#about">About Us</a></li><li><a href="#services">Services</a></li><li><a href="#store">Shop</a></li><li><a href="#courses">Courses</a></li><li><a href="#">Events</a></li><li><a href="#">Articles</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="#">Privacy policy</a></li><li><a href="#">Terms &amp; conditions</a></li><li><a href="#">Cookie notice</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li></ul></div>
+    </div>
+    <div class="base"><span>© 2026 Unboxed</span><span>Built on Wix Studio</span></div>
+  </div>
+</footer>
+
+<script>
+const ICONS={
+ journal:'<rect x="22" y="12" width="56" height="76" rx="6"/><circle cx="50" cy="40" r="10"/><path d="M36 64h28M40 74h20"/>',
+ cards:'<rect x="18" y="22" width="44" height="62" rx="6" transform="rotate(-10 40 53)"/><rect x="38" y="16" width="44" height="62" rx="6"/><path d="M60 36v24M48 48h24"/>',
+ kit:'<path d="M14 40h72v46H14z"/><path d="M14 40l8-14h56l8 14"/><path d="M40 58h20"/>',
+ stickers:'<circle cx="34" cy="36" r="16"/><rect x="54" y="22" width="28" height="28" rx="6"/><path d="M20 82l16-26 16 26z"/><circle cx="70" cy="70" r="12"/>',
+ tote:'<path d="M18 36h64l-6 56H24z"/><path d="M36 36c0-14 6-22 14-22s14 8 14 22"/><rect x="38" y="56" width="24" height="18" rx="2"/>',
+ mug:'<path d="M22 28h46v50a8 8 0 01-8 8H30a8 8 0 01-8-8z"/><path d="M68 40h8a8 8 0 010 16h-8"/><circle cx="45" cy="56" r="8"/>',
+ tripod:'<rect x="34" y="16" width="32" height="22" rx="4"/><circle cx="50" cy="27" r="6"/><path d="M50 38v18M50 56L30 88M50 56l20 32M50 56v32"/>',
+ poster:'<rect x="18" y="12" width="64" height="76" rx="3"/><circle cx="40" cy="38" r="10"/><path d="M28 74l14-20 10 12 8-8 12 16z"/>'
+};
+const P=[
+ ['Curiosity journal','€20','journal','#F3B33D','Best seller'],
+ ['"Ask anything" card deck for kids','€24','cards','#2BA39A',''],
+ ['Phone film-making starter kit','€45','kit','#E85D3F','New'],
+ ['Many-fields sticker sheet','€8','stickers','#8C7CF0',''],
+ ['Unboxed tote','€20','tote','#1F2347',''],
+ ['Unboxed mug','€18','mug','#C89B6A',''],
+ ['Mini phone tripod','<s>€29</s>€19','tripod','#2B3060','Sale'],
+ ['"Contain multitudes" poster','€30','poster','#DCE0EA','Pre-order']
+];
+const host=document.getElementById('products');
+P.forEach(([n,p,i,bg,tag])=>{
+  const dark=['#1F2347','#2B3060'].includes(bg);
+  const stroke=dark?'#EEF0FA':'#181B33';
+  host.insertAdjacentHTML('beforeend',`<article class="prod">
+    <div class="pic" style="background:${bg}">${tag?`<span class="tag">${tag}</span>`:''}
+      <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="${stroke}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">${ICONS[i]}</g></svg></div>
+    <h3>${n}</h3><div class="p">${p}</div>
+    <button class="btn ghost">${tag==='Pre-order'?'Pre-order':'Add to cart'}</button></article>`);
+});
+</script>
+</body>
+</html>

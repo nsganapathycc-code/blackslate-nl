@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Duplicate and apply the brand</title><style>body{margin:0;font:16px/1.6 'DM Sans',Arial,sans-serif;color:#1F2A25;background:#F3F5F3}
+.top{background:#354A40;color:#fff}.top .in{padding-top:30px;padding-bottom:30px}
+.in{max-width:960px;margin:0 auto;padding:0 24px}
+.crumb a{color:#DCE5DF;font-size:14px}
+h1{font:700 30px 'Space Grotesk',Arial,sans-serif;margin:8px 0 6px}
+.top p{margin:0;color:#DCE5DF}
+.prog{display:flex;align-items:center;gap:12px;margin-top:16px;font-weight:600;font-size:14px}.prog .bar{flex:0 1 300px;height:8px;background:rgba(255,255,255,.25);border-radius:4px;overflow:hidden}.prog i{display:block;height:100%;width:0;background:#B5D334}
+main .in{padding-top:28px;padding-bottom:48px}
+h2{font:700 20px 'Space Grotesk',Arial,sans-serif;color:#354A40;margin:24px 0 10px}
+ul.chk{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+ul.chk li{background:#fff;border:1px solid #DCE0DD;border-radius:8px}
+ul.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;cursor:pointer}
+ul.chk input{margin-top:4px;width:18px;height:18px;accent-color:#354A40;flex:0 0 auto}
+ul.chk label>span{min-width:0;flex:1}ul.chk b{display:block}ul.chk em{display:block;font-style:normal;font-size:14px;color:#4A5751}
+ul.chk li.done{background:#F2F7E4;border-color:#B5D334}
+pre{background:#1F2A25;color:#E4EAE6;font:13px/1.5 Consolas,Menlo,monospace;padding:12px 14px;border-radius:6px;overflow-x:auto;margin:8px 0 0;white-space:pre}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:32px;font-weight:600}.nav a{color:#354A40}
+.card{background:#fff;border:1px solid #DCE0DD;border-radius:10px;padding:22px}
+.mtable{overflow-x:auto;border:1px solid #DCE0DD;background:#fff}table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px;line-height:1.45}th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid #E6E8E6}thead th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#4A5751;background:#F3F5F3}tbody th{white-space:nowrap}
+.brand{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:14px}.brand input{font:inherit;padding:6px 10px;border:1px solid rgba(255,255,255,.6);background:transparent;color:#fff;border-radius:6px}
+</style></head>
+<body data-page="02-duplicate-and-brand"><div class="top"><div class="in"><div class="crumb"><a href="index.html">Brand setup</a> › Step 2 of 8</div><h1>Duplicate and apply the brand</h1><p>For each brand: make the copy and change the few global settings that carry the brand.</p>
+<div class="brand">Brand: <input id="brand" type="text" placeholder="e.g. Unboxed" aria-label="Brand name (ticks are saved per brand)"></div><div class="prog"><span id="pc"></span><div class="bar"><i id="pb"></i></div></div></div></div>
+<main><div class="in"><h2>Create the brand site</h2><ul class="chk"><li><label><input type="checkbox" data-id="duplicate-the-master"><span><b>Duplicate the master</b><em>New site from your saved template, named after the brand.</em></span></label></li><li><label><input type="checkbox" data-id="stay-on-the-free-plan-while-building"><span><b>Stay on the free plan while building</b><em>Upgrade to a premium plan only when the brand is about to sell (see the launch approach).</em></span></label></li><li><label><input type="checkbox" data-id="connect-the-domain"><span><b>Connect the domain</b><em>Brand domain connected; business email on the same domain.</em></span></label></li></ul><h2>Brand identity (global settings only)</h2><ul class="chk"><li><label><input type="checkbox" data-id="theme-5-colours-and-2-fonts"><span><b>Theme: 5 colours and 2 fonts</b><em>Brand, action, accent, light background, text, plus heading and body font, in Wix Studio’s global design. Use the values you tested in the Brand kit.</em></span></label></li><li><label><input type="checkbox" data-id="logo-slot"><span><b>Logo slot</b><em>Upload the logo once: header, footer, favicon, social share image.</em></span></label></li><li><label><input type="checkbox" data-id="business-name"><span><b>Business name</b><em>Replace [Business Name] in the global setting/text and in the copyright line.</em></span></label></li><li><label><input type="checkbox" data-id="social-links"><span><b>Social links</b><em>Footer Follow links and the Organization markup’s sameAs.</em></span></label></li><li><label><input type="checkbox" data-id="email-sender-details"><span><b>Email sender details</b><em>Sender name and reply-to address for Wix emails and automations.</em></span></label></li></ul><h2>Legal</h2><ul class="chk"><li><label><input type="checkbox" data-id="privacy-policy-terms-cookie-notice"><span><b>Privacy policy, terms, cookie notice</b><em>Fill each document’s brand-specific section; business name, KvK number, contact email.</em></span></label></li><li><label><input type="checkbox" data-id="cookie-banner-categories"><span><b>Cookie banner categories</b><em>Check the banner matches the tools this brand actually uses (analytics, marketing).</em></span></label></li></ul><div class="nav"><a href="01-after-handover.html">← After BQ hands over the master</a><a href="03-switch-off-modules.html">Switch off modules the brand doesn’t need →</a></div></div></main><script>
+(function(){var page=document.body.dataset.page,bi=document.getElementById('brand');
+function key(){return 'bs.'+(bi&&bi.value.trim()?bi.value.trim().toLowerCase():'default')+'.'+page}
+var boxes=[].slice.call(document.querySelectorAll('ul.chk input'));
+function load(){var st={};try{st=JSON.parse(localStorage.getItem(key()))||{}}catch(e){}boxes.forEach(function(b){b.checked=!!st[b.dataset.id];b.closest('li').classList.toggle('done',b.checked)});prog()}
+function save(){var st={};boxes.forEach(function(b){if(b.checked)st[b.dataset.id]=1});try{localStorage.setItem(key(),JSON.stringify(st))}catch(e){}}
+function prog(){var n=boxes.filter(function(b){return b.checked}).length,t=document.getElementById('pc');if(t)t.textContent=n+' of '+boxes.length+' done';var i=document.getElementById('pb');if(i)i.style.width=(boxes.length?n/boxes.length*100:0)+'%'}
+boxes.forEach(function(b){b.addEventListener('change',function(){b.closest('li').classList.toggle('done',b.checked);save();prog()})});
+if(bi){try{bi.value=localStorage.getItem('bs.brand')||''}catch(e){}bi.addEventListener('change',function(){try{localStorage.setItem('bs.brand',bi.value)}catch(e){}load()})}
+load()})();
+</script></body></html>

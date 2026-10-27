@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>After launch: recurring checks</title><style>body{margin:0;font:16px/1.6 'DM Sans',Arial,sans-serif;color:#1F2A25;background:#F3F5F3}
+.top{background:#354A40;color:#fff}.top .in{padding-top:30px;padding-bottom:30px}
+.in{max-width:960px;margin:0 auto;padding:0 24px}
+.crumb a{color:#DCE5DF;font-size:14px}
+h1{font:700 30px 'Space Grotesk',Arial,sans-serif;margin:8px 0 6px}
+.top p{margin:0;color:#DCE5DF}
+.prog{display:flex;align-items:center;gap:12px;margin-top:16px;font-weight:600;font-size:14px}.prog .bar{flex:0 1 300px;height:8px;background:rgba(255,255,255,.25);border-radius:4px;overflow:hidden}.prog i{display:block;height:100%;width:0;background:#B5D334}
+main .in{padding-top:28px;padding-bottom:48px}
+h2{font:700 20px 'Space Grotesk',Arial,sans-serif;color:#354A40;margin:24px 0 10px}
+ul.chk{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+ul.chk li{background:#fff;border:1px solid #DCE0DD;border-radius:8px}
+ul.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;cursor:pointer}
+ul.chk input{margin-top:4px;width:18px;height:18px;accent-color:#354A40;flex:0 0 auto}
+ul.chk label>span{min-width:0;flex:1}ul.chk b{display:block}ul.chk em{display:block;font-style:normal;font-size:14px;color:#4A5751}
+ul.chk li.done{background:#F2F7E4;border-color:#B5D334}
+pre{background:#1F2A25;color:#E4EAE6;font:13px/1.5 Consolas,Menlo,monospace;padding:12px 14px;border-radius:6px;overflow-x:auto;margin:8px 0 0;white-space:pre}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:32px;font-weight:600}.nav a{color:#354A40}
+.card{background:#fff;border:1px solid #DCE0DD;border-radius:10px;padding:22px}
+.mtable{overflow-x:auto;border:1px solid #DCE0DD;background:#fff}table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px;line-height:1.45}th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid #E6E8E6}thead th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#4A5751;background:#F3F5F3}tbody th{white-space:nowrap}
+.brand{display:flex;gap:10px;align-items:center;margin-top:14px;font-size:14px}.brand input{font:inherit;padding:6px 10px;border:1px solid rgba(255,255,255,.6);background:transparent;color:#fff;border-radius:6px}
+</style></head>
+<body data-page="08-after-launch"><div class="top"><div class="in"><div class="crumb"><a href="index.html">Brand setup</a> › Step 8 of 8</div><h1>After launch: recurring checks</h1><p>Small routines that keep each brand site healthy.</p>
+<div class="brand">Brand: <input id="brand" type="text" placeholder="e.g. Unboxed" aria-label="Brand name (ticks are saved per brand)"></div><div class="prog"><span id="pc"></span><div class="bar"><i id="pb"></i></div></div></div></div>
+<main><div class="in"><h2>Monthly</h2><ul class="chk"><li><label><input type="checkbox" data-id="featured-articles"><span><b>Featured articles</b><em>Check article views; update which posts are featured (Articles and 404 page).</em></span></label></li><li><label><input type="checkbox" data-id="analytics-and-ai-visibility"><span><b>Analytics and AI visibility</b><em>Look at traffic, signups, sales and AI referrals; note what to write or change next.</em></span></label></li><li><label><input type="checkbox" data-id="form-submissions"><span><b>Form submissions</b><em>Answer contact and Work with us inquiries; check waitlist signups.</em></span></label></li><li><label><input type="checkbox" data-id="highlights-and-proof"><span><b>Highlights and proof</b><em>Add new real talks, features and testimonials.</em></span></label></li></ul><h2>Quarterly</h2><ul class="chk"><li><label><input type="checkbox" data-id="test-purchase"><span><b>Test purchase</b><em>One test checkout per main app; refund it.</em></span></label></li><li><label><input type="checkbox" data-id="waitlist-snippet-still-works"><span><b>Waitlist snippet still works</b><em>Submit a test waitlist entry and check the launch title arrives (Wix form updates can break it).</em></span></label></li><li><label><input type="checkbox" data-id="plans-and-prices"><span><b>Plans and prices</b><em>Review plan benefits and prices; retire old products.</em></span></label></li><li><label><input type="checkbox" data-id="legal-pages"><span><b>Legal pages</b><em>Still match the tools and data you use.</em></span></label></li></ul><h2>When the master template improves</h2><ul class="chk"><li><label><input type="checkbox" data-id="apply-to-each-brand"><span><b>Apply to each brand</b><em>Improvements to the master don’t flow into brand copies; apply them to each brand site, or rebuild new brands from the updated template.</em></span></label></li></ul><div class="nav"><a href="07-launch.html">← Launch approach</a><span></span></div></div></main><script>
+(function(){var page=document.body.dataset.page,bi=document.getElementById('brand');
+function key(){return 'bs.'+(bi&&bi.value.trim()?bi.value.trim().toLowerCase():'default')+'.'+page}
+var boxes=[].slice.call(document.querySelectorAll('ul.chk input'));
+function load(){var st={};try{st=JSON.parse(localStorage.getItem(key()))||{}}catch(e){}boxes.forEach(function(b){b.checked=!!st[b.dataset.id];b.closest('li').classList.toggle('done',b.checked)});prog()}
+function save(){var st={};boxes.forEach(function(b){if(b.checked)st[b.dataset.id]=1});try{localStorage.setItem(key(),JSON.stringify(st))}catch(e){}}
+function prog(){var n=boxes.filter(function(b){return b.checked}).length,t=document.getElementById('pc');if(t)t.textContent=n+' of '+boxes.length+' done';var i=document.getElementById('pb');if(i)i.style.width=(boxes.length?n/boxes.length*100:0)+'%'}
+boxes.forEach(function(b){b.addEventListener('change',function(){b.closest('li').classList.toggle('done',b.checked);save();prog()})});
+if(bi){try{bi.value=localStorage.getItem('bs.brand')||''}catch(e){}bi.addEventListener('change',function(){try{localStorage.setItem('bs.brand',bi.value)}catch(e){}load()})}
+load()})();
+</script></body></html>
