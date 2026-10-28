@@ -1,0 +1,14 @@
+
+#rl{position:absolute;left:0;top:0;width:100%;overflow:hidden;pointer-events:none;z-index:9000;font:600 11px/1.2 Arial,sans-serif}
+#rl .v,#rl .h{position:absolute;background:#E6007E}
+#rl .v{width:1px}#rl .h{height:1px}
+#rl .v::before,#rl .v::after,#rl .h::before,#rl .h::after{content:"";position:absolute;background:#E6007E}
+#rl .v::before,#rl .v::after{left:-4px;width:9px;height:1px}#rl .v::before{top:0}#rl .v::after{bottom:0}
+#rl .h::before,#rl .h::after{top:-4px;height:9px;width:1px}#rl .h::before{left:0}#rl .h::after{right:0}
+#rl .t{position:absolute;background:#E6007E;color:#fff;padding:2px 5px;border-radius:3px;white-space:nowrap}
+#rl .t.o{background:#fff;color:#E6007E;border:1px solid #E6007E}
+#rl .box{position:absolute;outline:1px dashed #E6007E}
+#rl-bar{position:fixed;left:0;right:0;bottom:0;z-index:9500;background:#1F2A25;color:#fff;font:13px/1.4 Arial,sans-serif;padding:8px 14px}
+#rl-bar a{color:#B5D334}#rl-bar button{font:inherit;margin-left:8px;cursor:pointer}
+body.rl-off #rl{display:none}
+#bk-switch{display:none!important}

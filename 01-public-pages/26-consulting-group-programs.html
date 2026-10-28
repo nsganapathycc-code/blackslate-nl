@@ -502,9 +502,30 @@ footer .f-grid nav[aria-labelledby="f-ex"] a{display:block;margin-bottom:12px;br
 /* header full width: logo at the far left, actions at the far right */
 .home header .wrap.hbar,.sh-bar{max-width:none!important;padding-left:32px!important;padding-right:32px!important}
 @media (max-width:720px){.home header .wrap.hbar,.sh-bar{padding-left:20px!important;padding-right:20px!important}}
+
+/* ===== FOOTER v2: full width like the header, menus left, form right, smaller type ===== */
+footer:not(.lp-foot) .wrap{max-width:none!important;padding-left:32px!important;padding-right:32px!important;gap:40px!important}
+footer:not(.lp-foot) .f-logo{font-size:24px!important}
+footer:not(.lp-foot) nav h2{font-size:16px!important;font-weight:600!important;letter-spacing:.02em;margin:0 0 14px!important}
+footer:not(.lp-foot) nav{gap:0!important;row-gap:0!important}footer:not(.lp-foot) nav a{display:block;font-size:15px!important;line-height:1.4!important;margin:0 0 9px!important}
+footer:not(.lp-foot) .f-form{padding:22px!important}
+footer:not(.lp-foot) .f-title{font-size:20px!important;line-height:1.25!important;margin:0 0 14px!important}
+footer:not(.lp-foot) .f-form label{font-size:14px!important}
+footer:not(.lp-foot) .f-form input[type=text],footer:not(.lp-foot) .f-form input[type=email]{font-size:15px!important;padding:10px 12px!important}
+footer:not(.lp-foot) .f-check,footer:not(.lp-foot) .f-check span{font-size:13px!important;line-height:1.5!important}
+footer:not(.lp-foot) .f-btn{font-size:15px!important;padding:11px 16px!important}
+footer:not(.lp-foot) .f-copy{font-size:13px!important}
+@media (min-width:1081px){
+ footer:not(.lp-foot) .f-grid{display:grid!important;grid-template-columns:auto auto auto minmax(0,1fr)!important;column-gap:72px!important;align-items:start}
+ footer:not(.lp-foot) .f-form{justify-self:end;width:100%;max-width:380px}
+ footer:not(.lp-foot) .f-grid nav[aria-labelledby="f-ex"]{column-gap:40px!important}
+}
+
+/* mockup-only link to developer notes */ .devnotes-link{position:fixed;top:3px;left:4px;z-index:10000;font:600 11px/1 "DM Sans",Arial,sans-serif;background:#FFFFFF;color:#1F2A25;border:1px solid #1F2A25;border-radius:10px;padding:3px 7px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 </style>
 </head>
 <body>
+<a class="devnotes-link" href="../developer-notes/26-consulting-group-programs.html" title="Redline for the developer (mockup only)">Developer notes</a>
 
 <div class="home">
 <!-- Wix: site header (global). Cart icon (Wix Stores). Members login bar: logged out = "Log in" + "Join Free" (sign-up); logged in = notifications + avatar. -->
